@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FiixExercise</string>
+    <string name="question_header">Question : %1$s</string>
+    <string name="answer_header">Answer : %1$s</string>
+    <string name="data">Data</string>
+    <string name="position">Position</string>
+    <string name="no_question">No Question Available</string>
+    <string name="no_answer">No Answer Available</string>
 </resources>

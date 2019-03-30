@@ -8,4 +8,20 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="textStyle">
+        <item name="android:textSize">@dimen/default_text_size</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="blackTextStyle" parent="textStyle">
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <style name="blueTextStyle" parent="textStyle">
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+    <style name="whiteTextStyle" parent="textStyle">
+        <item name="android:textColor">@color/colorWhite</item>
+    </style>
+
 </resources>
