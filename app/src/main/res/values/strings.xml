@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FiixExercise</string>
+    <string name="Questiontext">Question</string>
+    <string name="Answertext">Answer</string>
 </resources>
