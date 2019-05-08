@@ -17,4 +17,4 @@ both the question and the answer.
 4. Upon navigating back to the list, if the user has seen the answer for the question, update
 the list to show that the answer has been shown for that item.
 
-When you are done please create a pull request. 
+When you are done please create a pull request. te
