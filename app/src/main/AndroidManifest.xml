@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".kotlinsample.DetailActivity"></activity>
         <!-- If using the Java package, change the value to .javasample.MainActivity2 -->
         <activity android:name=".kotlinsample.MainActivity">
             <intent-filter>
