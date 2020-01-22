@@ -3,7 +3,7 @@ package fiix.challenge.fiixexercise.dp
 import kotlinx.coroutines.*
 import kotlin.random.Random
 
-class DataProcessor(private val source: DataSource) {
+open class DataProcessor(private val source: DataSource): Processor {
 
     //DO NOT MODIFY
     val scope = CoroutineScope(Dispatchers.Default)
@@ -11,7 +11,7 @@ class DataProcessor(private val source: DataSource) {
     val delayModifier = Random.nextLong(2, 30)
 
 
-    fun getAnswers(): List<String> {
+    override fun getAnswers(): List<String> {
         return runBlocking {
             processDataAsync().await()
         }
@@ -27,6 +27,10 @@ class DataProcessor(private val source: DataSource) {
 
 interface DataSource {
     fun getData(): List<String>
+}
+
+interface Processor {
+    fun getAnswers(): List<String>
 }
 
 
