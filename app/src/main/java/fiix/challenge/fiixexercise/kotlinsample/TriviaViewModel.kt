@@ -7,26 +7,20 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import fiix.challenge.fiixexercise.dp.DataProcessor
 import fiix.challenge.fiixexercise.dp.Processor
+import fiix.challenge.fiixexercise.kotlinsample.data.TriviaRepository
 
-class TriviaViewModel : ViewModel() {
-    @VisibleForTesting(otherwise = PRIVATE)
-    var dp: Processor = DataProcessor(LocalDataSource())
-    private val repo = MockRepo()
-    private var answers: LiveData<List<String>> = MutableLiveData()
+class TriviaViewModel(val triviaRepository: TriviaRepository) : ViewModel() {
 
-    private val questions = MutableLiveData<List<TriviaQuestion>>().apply {
-        value = repo.triviaQuestions
+    fun getQuestions(): LiveData<List<TriviaQuestion>> {
+        val questions = triviaRepository.getQuestions()
+        triviaRepository.getAnswers()
+        return questions
     }
 
-    private val loading = MutableLiveData<Boolean>()
-
-    fun getQuestions(): LiveData<List<TriviaQuestion>> = questions
-
-    fun getAnswers(): LiveData<List<String>> = answers
-
-    fun getLoading(): LiveData<Boolean> = loading
-
-    fun fetchAnswer(questionIndex: Int) {
-
+    fun getAnswer(questionId: Int) {
+        triviaRepository.getQuestion(questionId).value?.let {
+            it.showAnswer = true
+            triviaRepository.updateQuestion(it)
+        }
     }
 }
