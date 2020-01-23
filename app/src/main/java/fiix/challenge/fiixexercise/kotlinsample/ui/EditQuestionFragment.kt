@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import fiix.challenge.fiixexercise.R.layout
 import fiix.challenge.fiixexercise.kotlinsample.data.TriviaQuestion
 import fiix.challenge.fiixexercise.kotlinsample.utils.InjectionUtils
 import fiix.challenge.fiixexercise.kotlinsample.viewmodels.EditQuestionViewModel
@@ -31,9 +32,8 @@ class EditQuestionFragment: Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        check(questionId < 0) { "Invalid ID passed to EditQuestionFragment" }
-
-        return super.onCreateView(inflater, container, savedInstanceState)
+        check(questionId >= 0) { "Invalid ID passed to EditQuestionFragment" }
+        return inflater.inflate(layout.fragment_edit_question, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

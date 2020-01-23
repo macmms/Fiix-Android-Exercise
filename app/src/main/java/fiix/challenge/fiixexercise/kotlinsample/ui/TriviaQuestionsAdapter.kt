@@ -48,6 +48,9 @@ class TriviaQuestionsAdapter(private val listener: TriviaQuestionListener) : Ada
                 answerButton.setOnClickListener {
                     listener.onAnswerClicked(question)
                 }
+                setOnClickListener {
+                    listener.onQuestionEditClicked(question.id)
+                }
             }
         }
     }
@@ -56,6 +59,6 @@ class TriviaQuestionsAdapter(private val listener: TriviaQuestionListener) : Ada
 
     interface TriviaQuestionListener {
         fun onAnswerClicked(question: TriviaQuestion)
-
+        fun onQuestionEditClicked(questionId: Int)
     }
 }
