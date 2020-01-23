@@ -2,6 +2,8 @@ apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
 
+apply plugin: 'kotlin-kapt'
+
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -36,7 +38,8 @@ dependencies {
     implementation 'androidx.arch.core:core-runtime:2.1.0'
 
     implementation "androidx.room:room-runtime:2.2.3"
-    annotationProcessor "androidx.room:room-compiler:2.2.3"
+    implementation "androidx.room:room-ktx:2.2.3"
+    kapt "androidx.room:room-compiler:2.2.3"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "androidx.room:room-testing:2.2.3"
@@ -47,5 +50,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
+    implementation 'androidx.fragment:fragment-ktx:1.1.0'
     implementation 'androidx.cardview:cardview:1.0.0'
 }

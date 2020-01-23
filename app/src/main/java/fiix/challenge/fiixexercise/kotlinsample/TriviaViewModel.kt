@@ -1,26 +1,36 @@
 package fiix.challenge.fiixexercise.kotlinsample
 
-import androidx.annotation.VisibleForTesting
-import androidx.annotation.VisibleForTesting.PRIVATE
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import fiix.challenge.fiixexercise.dp.DataProcessor
-import fiix.challenge.fiixexercise.dp.Processor
+import androidx.lifecycle.viewModelScope
 import fiix.challenge.fiixexercise.kotlinsample.data.TriviaRepository
+import kotlinx.coroutines.launch
 
-class TriviaViewModel(val triviaRepository: TriviaRepository) : ViewModel() {
+class TriviaViewModel(private val triviaRepository: TriviaRepository) : ViewModel() {
+
+    fun fetchQuestions() {
+        viewModelScope.launch {
+            triviaRepository.fetchQuestions()
+        }
+    }
 
     fun getQuestions(): LiveData<List<TriviaQuestion>> {
-        val questions = triviaRepository.getQuestions()
-        triviaRepository.getAnswers()
-        return questions
+        return triviaRepository.getQuestions()
+    }
+
+    fun getAnswers(questions: List<TriviaQuestion>) {
+        viewModelScope.launch {
+            triviaRepository.getAnswers(questions)
+        }
     }
 
     fun getAnswer(questionId: Int) {
         triviaRepository.getQuestion(questionId).value?.let {
             it.showAnswer = true
-            triviaRepository.updateQuestion(it)
+            viewModelScope.launch {
+                triviaRepository.updateQuestion(it)
+            }
+
         }
     }
 }

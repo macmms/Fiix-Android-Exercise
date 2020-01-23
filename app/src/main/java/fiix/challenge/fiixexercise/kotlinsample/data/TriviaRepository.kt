@@ -4,9 +4,10 @@ import androidx.lifecycle.LiveData
 import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestion
 
 interface TriviaRepository {
+    suspend fun fetchQuestions()
     fun getQuestions(): LiveData<List<TriviaQuestion>>
     fun getQuestion(id: Int): LiveData<TriviaQuestion>
-    fun getAnswers()
-    fun setQuestions(questions: List<TriviaQuestion>)
-    fun updateQuestion(question: TriviaQuestion)
+    suspend fun getAnswers(questions: List<TriviaQuestion>)
+    suspend fun setQuestions(questions: List<TriviaQuestion>)
+    suspend fun updateQuestion(question: TriviaQuestion)
 }

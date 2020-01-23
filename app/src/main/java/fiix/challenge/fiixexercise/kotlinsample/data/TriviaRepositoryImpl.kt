@@ -5,38 +5,44 @@ import fiix.challenge.fiixexercise.dp.Processor
 import fiix.challenge.fiixexercise.kotlinsample.MockRepo
 import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestion
 import fiix.challenge.fiixexercise.kotlinsample.data.local.TriviaQuestionDao
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class TriviaRepositoryImpl(
     val dao: TriviaQuestionDao,
     val mockRepo: MockRepo,
-    val processor: Processor): TriviaRepository {
+    val processor: Processor
+) : TriviaRepository {
+
+    //Simulates network call
+    override suspend fun fetchQuestions() {
+        setQuestions(mockRepo.triviaQuestions)
+    }
 
     override fun getQuestions(): LiveData<List<TriviaQuestion>> {
-        if (dao.getQuestions().value.isNullOrEmpty()) {
-            dao.setQuestions(mockRepo.triviaQuestions)
-        }
         return dao.getQuestions()
     }
 
-    override fun getAnswers() {
-        val answers = processor.getAnswers()
-        val questions = getQuestions().value ?: throw IllegalStateException("Questions must be obtained before answers")
-        check(answers.size == questions.size) { "Different number of questions and answers" }
-        answers.forEachIndexed { i, answer ->
-            questions[i].answer = answer
+    override suspend fun getAnswers(questions: List<TriviaQuestion>) {
+        withContext(Dispatchers.IO) {
+            val answers = processor.getAnswers()
+            check(answers.size == questions.size) { "Different number of questions and answers" }
+            answers.forEachIndexed { i, answer ->
+                questions[i].answer = answer
+            }
+            setQuestions(questions)
         }
-        dao.setQuestions(questions)
     }
 
     override fun getQuestion(id: Int): LiveData<TriviaQuestion> {
         return dao.getQuestion(id)
     }
 
-    override fun setQuestions(questions: List<TriviaQuestion>) {
-        dao.setQuestions(questions)
+    override suspend fun setQuestions(questions: List<TriviaQuestion>) {
+        withContext(Dispatchers.IO) { dao.setQuestions(questions) }
     }
 
-    override fun updateQuestion(question: TriviaQuestion) {
-        dao.updateQuestion(question)
+    override suspend fun updateQuestion(question: TriviaQuestion) {
+        withContext(Dispatchers.IO) { dao.updateQuestion(question) }
     }
 }
