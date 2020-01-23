@@ -8,6 +8,8 @@ import fiix.challenge.fiixexercise.kotlinsample.viewmodels.TriviaViewModelFactor
 import fiix.challenge.fiixexercise.kotlinsample.data.TriviaRepository
 import fiix.challenge.fiixexercise.kotlinsample.data.TriviaRepositoryImpl
 import fiix.challenge.fiixexercise.kotlinsample.data.local.AppDatabase
+import fiix.challenge.fiixexercise.kotlinsample.viewmodels.EditQuestionViewModel
+import fiix.challenge.fiixexercise.kotlinsample.viewmodels.EditQuestionViewModelFactory
 
 object InjectionUtils {
     fun provideDataBase(context: Context): AppDatabase {
@@ -16,6 +18,14 @@ object InjectionUtils {
 
     fun provideTriviaViewModelFactory(context: Context): TriviaViewModelFactory {
         return TriviaViewModelFactory(
+            provideTriviaRepository(
+                context
+            )
+        )
+    }
+
+    fun provideEditQuestionViewModelFactory(context: Context): EditQuestionViewModelFactory {
+        return EditQuestionViewModelFactory(
             provideTriviaRepository(
                 context
             )
