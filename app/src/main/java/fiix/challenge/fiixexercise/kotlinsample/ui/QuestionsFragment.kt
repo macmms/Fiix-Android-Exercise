@@ -25,10 +25,6 @@ class QuestionsFragment: Fragment(), TriviaQuestionListener {
     private val adapter = TriviaQuestionsAdapter(this)
     private var listener: QuestionsFragmentListener? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        triviaViewModel.fetchQuestions()
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_questions, container, false)

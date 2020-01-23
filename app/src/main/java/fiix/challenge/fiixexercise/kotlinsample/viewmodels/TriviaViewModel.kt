@@ -10,12 +10,6 @@ import kotlinx.coroutines.launch
 
 class TriviaViewModel(private val triviaRepository: TriviaRepository) : ViewModel() {
 
-    fun fetchQuestions() {
-        viewModelScope.launch {
-            triviaRepository.fetchQuestions()
-        }
-    }
-
     fun getQuestions(): LiveData<List<TriviaQuestion>> {
         return triviaRepository.getQuestions()
     }

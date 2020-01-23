@@ -14,9 +14,11 @@ class TriviaActivity : AppCompatActivity(), QuestionsFragmentListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportFragmentManager.beginTransaction()
-            .add(R.id.container, QuestionsFragment.newInstance())
-            .commit()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, QuestionsFragment.newInstance())
+                .commit()
+        }
     }
 
     override fun onQuestionSelected(questionId: Int) {

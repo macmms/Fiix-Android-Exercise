@@ -1,9 +1,12 @@
 package fiix.challenge.fiixexercise.kotlinsample.data
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.Observer
 import fiix.challenge.fiixexercise.dp.Processor
 import fiix.challenge.fiixexercise.kotlinsample.data.local.TriviaQuestionDao
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class TriviaRepositoryImpl(
@@ -12,13 +15,18 @@ class TriviaRepositoryImpl(
     val processor: Processor
 ) : TriviaRepository {
 
-    //Simulates network call
-    override suspend fun fetchQuestions() {
-        setQuestions(mockRepo.triviaQuestions)
-    }
+    private val questionsLive = MediatorLiveData<List<TriviaQuestion>>()
 
     override fun getQuestions(): LiveData<List<TriviaQuestion>> {
-        return dao.getQuestions()
+        val questionsLD = dao.getQuestions()
+        questionsLive.addSource(questionsLD) { questions ->
+            if (questions.isNullOrEmpty()) {
+                runBlocking(Dispatchers.IO) { setQuestions(mockRepo.triviaQuestions) }
+            } else {
+                questionsLive.postValue(questions)
+            }
+        }
+        return questionsLive
     }
 
     override suspend fun getAnswers(questions: List<TriviaQuestion>) {
