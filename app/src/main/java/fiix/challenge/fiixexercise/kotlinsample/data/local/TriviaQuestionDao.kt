@@ -6,7 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
-import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestion
+import fiix.challenge.fiixexercise.kotlinsample.data.TriviaQuestion
 
 @Dao
 interface TriviaQuestionDao {

@@ -1,7 +1,10 @@
-package fiix.challenge.fiixexercise.kotlinsample
+package fiix.challenge.fiixexercise.kotlinsample.utils
 
 import android.content.Context
 import fiix.challenge.fiixexercise.dp.DataProcessor
+import fiix.challenge.fiixexercise.kotlinsample.data.LocalDataSource
+import fiix.challenge.fiixexercise.kotlinsample.data.MockRepo
+import fiix.challenge.fiixexercise.kotlinsample.viewmodels.TriviaViewModelFactory
 import fiix.challenge.fiixexercise.kotlinsample.data.TriviaRepository
 import fiix.challenge.fiixexercise.kotlinsample.data.TriviaRepositoryImpl
 import fiix.challenge.fiixexercise.kotlinsample.data.local.AppDatabase
@@ -12,7 +15,11 @@ object InjectionUtils {
     }
 
     fun provideTriviaViewModelFactory(context: Context): TriviaViewModelFactory {
-        return TriviaViewModelFactory(provideTriviaRepository(context))
+        return TriviaViewModelFactory(
+            provideTriviaRepository(
+                context
+            )
+        )
     }
 
     fun provideTriviaRepository(context: Context): TriviaRepository {

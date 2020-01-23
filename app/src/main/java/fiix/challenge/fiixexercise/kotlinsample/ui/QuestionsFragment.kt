@@ -1,4 +1,4 @@
-package fiix.challenge.fiixexercise.kotlinsample
+package fiix.challenge.fiixexercise.kotlinsample.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import fiix.challenge.fiixexercise.R
-import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestionsAdapter.TriviaQuestionListener
+import fiix.challenge.fiixexercise.kotlinsample.data.TriviaQuestion
+import fiix.challenge.fiixexercise.kotlinsample.viewmodels.TriviaViewModel
+import fiix.challenge.fiixexercise.kotlinsample.ui.TriviaQuestionsAdapter.TriviaQuestionListener
+import fiix.challenge.fiixexercise.kotlinsample.utils.InjectionUtils
 import kotlinx.android.synthetic.main.fragment_questions.view.questionRecyclerView
 
 class QuestionsFragment: Fragment(), TriviaQuestionListener {

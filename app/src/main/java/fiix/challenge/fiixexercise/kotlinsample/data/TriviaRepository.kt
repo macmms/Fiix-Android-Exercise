@@ -1,7 +1,6 @@
 package fiix.challenge.fiixexercise.kotlinsample.data
 
 import androidx.lifecycle.LiveData
-import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestion
 
 interface TriviaRepository {
     suspend fun fetchQuestions()

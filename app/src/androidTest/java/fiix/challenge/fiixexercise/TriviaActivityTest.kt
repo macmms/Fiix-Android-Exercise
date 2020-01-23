@@ -3,8 +3,8 @@ package fiix.challenge.fiixexercise
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestion
-import fiix.challenge.fiixexercise.kotlinsample.TriviaViewModel
+import fiix.challenge.fiixexercise.kotlinsample.data.TriviaQuestion
+import fiix.challenge.fiixexercise.kotlinsample.viewmodels.TriviaViewModel
 import fiix.challenge.fiixexercise.kotlinsample.data.TriviaRepository
 import org.junit.*
 import org.junit.runner.*

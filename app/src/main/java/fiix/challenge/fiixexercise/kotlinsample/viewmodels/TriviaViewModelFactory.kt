@@ -1,4 +1,4 @@
-package fiix.challenge.fiixexercise.kotlinsample
+package fiix.challenge.fiixexercise.kotlinsample.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

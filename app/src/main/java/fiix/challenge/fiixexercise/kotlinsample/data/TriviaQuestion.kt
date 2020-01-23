@@ -1,4 +1,4 @@
-package fiix.challenge.fiixexercise.kotlinsample
+package fiix.challenge.fiixexercise.kotlinsample.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

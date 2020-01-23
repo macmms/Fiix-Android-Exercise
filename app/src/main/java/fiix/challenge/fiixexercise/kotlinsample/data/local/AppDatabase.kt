@@ -4,7 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestion
+import fiix.challenge.fiixexercise.kotlinsample.data.TriviaQuestion
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext

@@ -2,8 +2,6 @@ package fiix.challenge.fiixexercise.kotlinsample.data
 
 import androidx.lifecycle.LiveData
 import fiix.challenge.fiixexercise.dp.Processor
-import fiix.challenge.fiixexercise.kotlinsample.MockRepo
-import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestion
 import fiix.challenge.fiixexercise.kotlinsample.data.local.TriviaQuestionDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -1,4 +1,4 @@
-package fiix.challenge.fiixexercise.kotlinsample
+package fiix.challenge.fiixexercise.kotlinsample.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,7 +6,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import fiix.challenge.fiixexercise.R
-import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestionsAdapter.TriviaQuestionHolder
+import fiix.challenge.fiixexercise.kotlinsample.data.TriviaQuestion
+import fiix.challenge.fiixexercise.kotlinsample.ui.TriviaQuestionsAdapter.TriviaQuestionHolder
 import kotlinx.android.synthetic.main.row_trivia_question.view.answerButton
 import kotlinx.android.synthetic.main.row_trivia_question.view.answerTextView
 import kotlinx.android.synthetic.main.row_trivia_question.view.progress
