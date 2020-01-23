@@ -2,6 +2,7 @@ package fiix.challenge.fiixexercise.kotlinsample.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import fiix.challenge.fiixexercise.R
@@ -26,5 +27,12 @@ class TriviaActivity : AppCompatActivity(), QuestionsFragmentListener {
             .replace(R.id.container, EditQuestionFragment.newInstance(questionId))
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        if (item?.itemId == android.R.id.home) {
+            supportFragmentManager.popBackStackImmediate()
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

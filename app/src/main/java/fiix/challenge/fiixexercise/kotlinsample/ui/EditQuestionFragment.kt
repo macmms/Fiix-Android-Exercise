@@ -5,9 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import fiix.challenge.fiixexercise.R
 import fiix.challenge.fiixexercise.R.layout
 import fiix.challenge.fiixexercise.kotlinsample.data.TriviaQuestion
 import fiix.challenge.fiixexercise.kotlinsample.utils.InjectionUtils
@@ -29,6 +31,13 @@ class EditQuestionFragment: Fragment() {
         arguments?.let {
             questionId = it.getInt(QUESTION_ID, -1)
         }
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.edit_question)
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
