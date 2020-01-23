@@ -31,14 +31,14 @@ class QuestionsFragment: Fragment(), TriviaQuestionListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         triviaViewModel.getQuestions().observe(viewLifecycleOwner, Observer { questions ->
-            triviaViewModel.getAnswers(questions)
+            if (questions.first().answer == null) triviaViewModel.getAnswers(questions)
             adapter.updateQuestions(questions)
         })
         triviaViewModel.fetchQuestions()
     }
 
     override fun onAnswerClicked(question: TriviaQuestion) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        triviaViewModel.getAnswer(question)
     }
 
     companion object {

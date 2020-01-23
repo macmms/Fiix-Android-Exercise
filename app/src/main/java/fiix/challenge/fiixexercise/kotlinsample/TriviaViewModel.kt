@@ -24,13 +24,10 @@ class TriviaViewModel(private val triviaRepository: TriviaRepository) : ViewMode
         }
     }
 
-    fun getAnswer(questionId: Int) {
-        triviaRepository.getQuestion(questionId).value?.let {
-            it.showAnswer = true
-            viewModelScope.launch {
-                triviaRepository.updateQuestion(it)
-            }
-
+    fun getAnswer(question: TriviaQuestion) {
+        question.showAnswer = true
+        viewModelScope.launch {
+            triviaRepository.updateQuestion(question)
         }
     }
 }
