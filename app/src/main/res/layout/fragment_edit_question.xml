@@ -45,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/questionEditText" />
 
     <EditText
-        android:id="@+id/answerEditTest"
+        android:id="@+id/answerEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -66,5 +66,5 @@
         android:text="@string/save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answerEditTest" />
+        app:layout_constraintTop_toBottomOf="@+id/answerEditText" />
 </androidx.constraintlayout.widget.ConstraintLayout>
