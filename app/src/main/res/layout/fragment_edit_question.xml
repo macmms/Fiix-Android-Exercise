@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_light"
+    android:padding="10dp">
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputLayoutQuestion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:theme="@style/TextLabel"
+        app:hintTextAppearance="@style/TextLabelHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/EditQuestion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/question"
+            android:imeOptions="actionNext"
+            android:inputType="textMultiLine"
+            android:paddingBottom="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey"
+            android:textSize="15sp"
+            android:theme="@style/BlueEditTextTheme" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/inputLayoutAnswer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:theme="@style/TextLabel"
+        app:hintTextAppearance="@style/TextLabelHint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutQuestion">
+
+        <EditText
+            android:id="@+id/EditAnswer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/answer"
+            android:imeOptions="actionDone"
+            android:inputType="textMultiLine"
+            android:paddingBottom="15dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey"
+            android:textSize="15sp"
+            android:theme="@style/BlueEditTextTheme" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/BtnSave"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/bg_grey_primary_selector"
+        android:text="@string/save"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutAnswer" />
+
+</android.support.constraint.ConstraintLayout>

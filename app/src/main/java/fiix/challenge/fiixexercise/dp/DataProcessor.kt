@@ -10,7 +10,6 @@ class DataProcessor(private val source: DataSource) {
     //DO NOT MODIFY
     val delayModifier = Random.nextLong(2, 30)
 
-
     fun getAnswers(): List<String> {
         return runBlocking {
             processDataAsync().await()
