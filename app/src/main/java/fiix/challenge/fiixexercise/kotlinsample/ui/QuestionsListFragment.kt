@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
@@ -79,6 +80,8 @@ class QuestionsFragmentList : Fragment(), QuestionsListInterface {
     override fun onResume() {
         super.onResume()
         (activity as MainActivity).supportActionBar?.title = getString(R.string.app_name)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        (activity as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(false)
     }
 
     override fun onAnswerClick(question: TriviaQuestion) {
