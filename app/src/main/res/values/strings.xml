@@ -10,4 +10,5 @@
     <string name="please_enter_answer">Please enter answer.</string>
     <string name="please_enter_question">Please enter question.</string>
     <string name="edit_question">Edit Question</string>
+    <string name="hide">HIDE</string>
 </resources>

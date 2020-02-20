@@ -5,11 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class HomeViewModel : ViewModel() {
-
-
-
     //Navigation block starts here
-    /*For making navigation reactive & thread safe.
+    /*For making navigation reactive.
        We will use live data to perform navigation*/
     private val _navigateToEditQuestion = MutableLiveData<Boolean>()
 
@@ -20,7 +17,7 @@ class HomeViewModel : ViewModel() {
     /**
      * Function to be called when list item is pressed.
      * */
-    fun listItemClicked(index:Int){
+    fun listItemClicked() {
         _navigateToEditQuestion.value = true
     }
 

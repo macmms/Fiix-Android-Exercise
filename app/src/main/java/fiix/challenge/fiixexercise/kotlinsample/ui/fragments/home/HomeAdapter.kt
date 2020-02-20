@@ -1,6 +1,6 @@
 package fiix.challenge.fiixexercise.kotlinsample.ui.fragments.home
 
-import android.opengl.Visibility
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import fiix.challenge.fiixexercise.R
 import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestion
 
-class HomeAdapter(val clickListener: HomeListener) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
+class HomeAdapter(private val clickListener: HomeListener) : RecyclerView.Adapter<HomeAdapter.ViewHolder>() {
 
     var data = listOf<TriviaQuestion>()
         set(value) {
@@ -30,15 +30,15 @@ class HomeAdapter(val clickListener: HomeListener) : RecyclerView.Adapter<HomeAd
     override fun getItemCount() = data.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(data.get(position))
+        holder.bind(data[position])
     }
 
     /*ViewHolder implementation with companion object for easy initialisation*/
 
     class ViewHolder private constructor(itemView: View, clickListener: HomeListener) : RecyclerView.ViewHolder(itemView) {
-        val tvQuestion: TextView = itemView.findViewById(R.id.tvQuestion)
-        val tvAnswer: TextView = itemView.findViewById(R.id.tvAnswer)
-        val buttonAnswer: Button = itemView.findViewById(R.id.buttonAnswer)
+        private val tvQuestion: TextView = itemView.findViewById(R.id.tvQuestion)
+        private val tvAnswer: TextView = itemView.findViewById(R.id.tvAnswer)
+       private val buttonAnswer: Button = itemView.findViewById(R.id.buttonAnswer)
 
         init {
             itemView.setOnClickListener {
@@ -50,19 +50,18 @@ class HomeAdapter(val clickListener: HomeListener) : RecyclerView.Adapter<HomeAd
             }
         }
 
+        @SuppressLint("SetTextI18n")
         fun bind(triviaQuestion: TriviaQuestion) {
             tvQuestion.text = "Q. ${triviaQuestion.question}"
             tvAnswer.text ="Ans. ${triviaQuestion.answer}"
             if(triviaQuestion.showAnswer){
-                buttonAnswer.text="HIDE"
+                buttonAnswer.text=itemView.context.getString(R.string.hide)
                 tvAnswer.visibility=View.VISIBLE
             }else{
-                buttonAnswer.text="ANSWER"
+                buttonAnswer.text=itemView.context.getString(R.string.answer)
                 tvAnswer.visibility=View.GONE
 
             }
-
-
         }
 
         companion object {
@@ -70,15 +69,13 @@ class HomeAdapter(val clickListener: HomeListener) : RecyclerView.Adapter<HomeAd
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val view = layoutInflater
                         .inflate(R.layout.list_item_home, parent, false)
-
                 return ViewHolder(view, clickListener)
             }
         }
     }
-
-
 }
 
+// Callbacks from adapter to fragment
 interface HomeListener {
     fun onClick(index: Int)
     fun showHideAnswer(index: Int)

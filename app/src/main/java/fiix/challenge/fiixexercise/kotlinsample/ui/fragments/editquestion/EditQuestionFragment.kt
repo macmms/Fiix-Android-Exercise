@@ -1,6 +1,5 @@
 package fiix.challenge.fiixexercise.kotlinsample.ui.fragments.editquestion
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -21,9 +20,7 @@ import fiix.challenge.fiixexercise.kotlinsample.ui.MainViewModelFactory
 
 class EditQuestionFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = EditQuestionFragment()
-    }
+
 
     private lateinit var viewModel: EditQuestionViewModel
     private lateinit var activityViewModel: MainActivityViewModel
@@ -43,27 +40,29 @@ class EditQuestionFragment : Fragment() {
         // To use the View Model with data binding give the binding object a reference to it.
         binding.editQuestionViewModel = viewModel
 
-        //Get Reference of MainActivity ViewModel
+        //Get Reference of MainActivity ViewModel for accessing data common to the activity & fragments
         val factory = MainViewModelFactory(DataProcessor(LocalDataSource()))
         activityViewModel = activity.run {
             ViewModelProvider(this!!.viewModelStore, factory)
                     .get(MainActivityViewModel::class.java)
         }
 
-        //Observer for the live data
+        //Observer for the signal to navigate to home
         viewModel.navigateToHome.observe(viewLifecycleOwner, Observer {
             if(it==true){
                 viewModel.selectedTrivia?.answer=binding.etAnswer.text.toString()
                 viewModel.selectedTrivia?.question=binding.etQuestion.text.toString()
+                viewModel.selectedTrivia?.showAnswer=false
                 activityViewModel.isQuestionEdited.value=true
                 this.findNavController().popBackStack()
-//                this.findNavController().navigate(EditQuestionFragmentDirections.actionEditQuestionFragmentToHomeFragment())
+                // This will make recycler scroll to the top.
+                //  this.findNavController().navigate(EditQuestionFragmentDirections.actionEditQuestionFragmentToHomeFragment())
                 viewModel.doneNavigating()
             }
         })
 
         if(activityViewModel.selectedItemIndex>=0){
-            viewModel.selectedTrivia = activityViewModel.triviaList.value?.get(activityViewModel.selectedItemIndex);
+            viewModel.selectedTrivia = activityViewModel.triviaList.value?.get(activityViewModel.selectedItemIndex)
 
         }
 
@@ -72,13 +71,11 @@ class EditQuestionFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        // Set the up button for navigation and Title for user guidance
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.edit_question)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
 
-    }
 
 }

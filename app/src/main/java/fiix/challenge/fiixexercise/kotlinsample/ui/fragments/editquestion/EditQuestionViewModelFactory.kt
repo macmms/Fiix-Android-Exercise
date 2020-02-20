@@ -3,6 +3,7 @@ package fiix.challenge.fiixexercise.kotlinsample.ui.fragments.editquestion
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
+// Not useful in this scenario but helps a lot when the dependencies are more
 class EditQuestionViewModelFactory:ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")

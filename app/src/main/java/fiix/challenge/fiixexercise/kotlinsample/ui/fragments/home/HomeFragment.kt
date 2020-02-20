@@ -22,10 +22,6 @@ import kotlinx.android.synthetic.main.home_fragment.*
 
 class HomeFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
-
     private lateinit var adapter: HomeAdapter
     private lateinit var activityViewModel: MainActivityViewModel
     private lateinit var viewModel: HomeViewModel
@@ -45,7 +41,7 @@ class HomeFragment : Fragment() {
 
         //Get Reference of MainActivity ViewModel
         val factory = MainViewModelFactory(DataProcessor(LocalDataSource()))
-         activityViewModel = activity.run {
+        activityViewModel = activity.run {
             ViewModelProvider(this!!.viewModelStore, factory)
                     .get(MainActivityViewModel::class.java)
         }
@@ -55,19 +51,19 @@ class HomeFragment : Fragment() {
 
 
         //Lets bind adapter to our recycler view
-         adapter = HomeAdapter(object : HomeListener {
+        adapter = HomeAdapter(object : HomeListener {
             override fun onClick(index: Int) {
-//                Toast.makeText(context, "hello click", Toast.LENGTH_LONG).show()
-                activityViewModel.selectedItemIndex=index
-                viewModel.listItemClicked(index)
-
+                activityViewModel.selectedItemIndex = index
+                viewModel.listItemClicked()
             }
 
             override fun showHideAnswer(index: Int) {
                 adapter.showHideAnswer(index)
             }
         })
-        binding.recyclerQuestions.itemAnimator=null
+
+        // To hide the animation on item change
+        binding.recyclerQuestions.itemAnimator = null
         binding.recyclerQuestions.adapter = adapter
 
 
@@ -75,31 +71,30 @@ class HomeFragment : Fragment() {
         viewModel.navigateToEditQuestion.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEditQuestionFragment())
-
                 viewModel.doneNavigating()
             }
         })
 
         activityViewModel.isLoadingData.observe(viewLifecycleOwner, Observer {
-            if(it==true){
-                progressHome.visibility=View.VISIBLE
-                recyclerQuestions.visibility=View.GONE
-            }else{
-                progressHome.visibility=View.GONE
-                recyclerQuestions.visibility=View.VISIBLE
+            if (it == true) {
+                progressHome.visibility = View.VISIBLE
+                recyclerQuestions.visibility = View.GONE
+            } else {
+                progressHome.visibility = View.GONE
+                recyclerQuestions.visibility = View.VISIBLE
             }
         })
 
         activityViewModel.triviaList.observe(viewLifecycleOwner, Observer {
-            if(it.isNotEmpty()){
-                adapter.data=it
+            if (it.isNotEmpty()) {
+                adapter.data = it
             }
         })
 
         activityViewModel.isQuestionEdited.observe(viewLifecycleOwner, Observer {
-            if(it==true){
+            if (it == true) {
                 adapter.notifyItemChanged(activityViewModel.selectedItemIndex)
-                activityViewModel.isQuestionEdited.value=false
+                activityViewModel.isQuestionEdited.value = false
             }
         })
 
@@ -114,6 +109,7 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        // UI modification
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
 

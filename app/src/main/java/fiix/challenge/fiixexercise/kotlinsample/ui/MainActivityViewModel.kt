@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class MainActivityViewModel(val dataProcessor: DataProcessor) : ViewModel() {
+class MainActivityViewModel(private val dataProcessor: DataProcessor) : ViewModel() {
 
     var selectedItemIndex: Int = -1
     val isLoadingData = MutableLiveData<Boolean>()
@@ -20,7 +20,7 @@ class MainActivityViewModel(val dataProcessor: DataProcessor) : ViewModel() {
     private val viewModelJob = Job()
     private val uiScope = CoroutineScope(Dispatchers.IO + viewModelJob)
 
-    // To avoid memory leak turn all the coroutines off.
+    // To avoid memory leak turn all the co-routines off.
     override fun onCleared() {
         super.onCleared()
         viewModelJob.cancel()
@@ -33,8 +33,10 @@ class MainActivityViewModel(val dataProcessor: DataProcessor) : ViewModel() {
 
         isLoadingData.postValue(true)
         uiScope.launch {
-            val questions = MockRepo().triviaQuestions;
+            // Get questions
+            val questions = MockRepo().triviaQuestions
 
+            // Get Answers
             val answers = dataProcessor.getAnswers()
 
             if (answers.size == questions.size) {
