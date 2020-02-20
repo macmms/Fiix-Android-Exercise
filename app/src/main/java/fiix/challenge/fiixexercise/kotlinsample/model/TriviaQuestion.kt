@@ -1,3 +1,3 @@
 package fiix.challenge.fiixexercise.kotlinsample.model
 
-data class TriviaQuestion(val question: String, var answer: String? = null, var showAnswer: Boolean =false)
+data class TriviaQuestion(var question: String, var answer: String? = null, var showAnswer: Boolean =false)

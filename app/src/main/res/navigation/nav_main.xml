@@ -10,22 +10,30 @@
         android:name="fiix.challenge.fiixexercise.kotlinsample.ui.fragments.home.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/home_fragment" >
-
         <action
             android:id="@+id/action_homeFragment_to_editQuestionFragment"
             app:destination="@id/editQuestionFragment"
             app:enterAnim="@anim/fragment_close_enter"
-
-            />
+            app:popUpTo="@+id/homeFragment"
+            app:popUpToInclusive="false">
+            <argument
+                android:name="itemIndex"
+                android:defaultValue="10" />
+        </action>
     </fragment>
     <fragment
         android:id="@+id/editQuestionFragment"
         android:name="fiix.challenge.fiixexercise.kotlinsample.ui.fragments.editquestion.EditQuestionFragment"
-        android:label="EditQuestionFragment" >
+        android:label="EditQuestionFragment">
+        <argument
+            android:name="itemIndex"
+            android:defaultValue="-1"
+            app:argType="integer" />
         <action
             android:id="@+id/action_editQuestionFragment_to_homeFragment"
             app:destination="@id/homeFragment"
             app:popUpTo="@+id/homeFragment"
             app:popUpToInclusive="true" />
+
     </fragment>
 </navigation>

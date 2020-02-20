@@ -51,8 +51,8 @@ class HomeAdapter(val clickListener: HomeListener) : RecyclerView.Adapter<HomeAd
         }
 
         fun bind(triviaQuestion: TriviaQuestion) {
-            tvQuestion.text = triviaQuestion.question
-            tvAnswer.text = triviaQuestion.answer
+            tvQuestion.text = "Q. ${triviaQuestion.question}"
+            tvAnswer.text ="Ans. ${triviaQuestion.answer}"
             if(triviaQuestion.showAnswer){
                 buttonAnswer.text="HIDE"
                 tvAnswer.visibility=View.VISIBLE

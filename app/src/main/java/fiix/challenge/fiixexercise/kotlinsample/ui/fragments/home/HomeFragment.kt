@@ -1,14 +1,15 @@
 package fiix.challenge.fiixexercise.kotlinsample.ui.fragments.home
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import fiix.challenge.fiixexercise.R
@@ -57,7 +58,9 @@ class HomeFragment : Fragment() {
          adapter = HomeAdapter(object : HomeListener {
             override fun onClick(index: Int) {
 //                Toast.makeText(context, "hello click", Toast.LENGTH_LONG).show()
+                activityViewModel.selectedItemIndex=index
                 viewModel.listItemClicked(index)
+
             }
 
             override fun showHideAnswer(index: Int) {
@@ -71,7 +74,8 @@ class HomeFragment : Fragment() {
         //Observe for any changes in navigation variables
         viewModel.navigateToEditQuestion.observe(viewLifecycleOwner, Observer {
             if (it == true) {
-                this.findNavController().navigate(R.id.action_homeFragment_to_editQuestionFragment)
+                this.findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToEditQuestionFragment())
+
                 viewModel.doneNavigating()
             }
         })
@@ -87,11 +91,18 @@ class HomeFragment : Fragment() {
         })
 
         activityViewModel.triviaList.observe(viewLifecycleOwner, Observer {
-
             if(it.isNotEmpty()){
                 adapter.data=it
             }
         })
+
+        activityViewModel.isQuestionEdited.observe(viewLifecycleOwner, Observer {
+            if(it==true){
+                adapter.notifyItemChanged(activityViewModel.selectedItemIndex)
+                activityViewModel.isQuestionEdited.value=false
+            }
+        })
+
         return binding.root
     }
 
@@ -105,6 +116,10 @@ class HomeFragment : Fragment() {
         super.onResume()
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
         (requireActivity() as AppCompatActivity).supportActionBar?.title = getString(R.string.app_name)
+
+        // Hide keyboard
+        val inputMethodManager = context?.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
 

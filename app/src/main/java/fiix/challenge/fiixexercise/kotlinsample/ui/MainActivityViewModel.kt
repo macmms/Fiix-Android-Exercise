@@ -12,7 +12,9 @@ import kotlinx.coroutines.launch
 
 class MainActivityViewModel(val dataProcessor: DataProcessor) : ViewModel() {
 
+    var selectedItemIndex: Int = -1
     val isLoadingData = MutableLiveData<Boolean>()
+    val isQuestionEdited= MutableLiveData<Boolean>()
     val triviaList = MutableLiveData<List<TriviaQuestion>>()
 
     private val viewModelJob = Job()
