@@ -6,6 +6,10 @@
         <variable
             name="homeViewModel"
             type="fiix.challenge.fiixexercise.kotlinsample.ui.fragments.home.HomeViewModel" />
+
+        <variable
+            name="activityViewModel"
+            type="fiix.challenge.fiixexercise.kotlinsample.ui.MainActivityViewModel" />
     </data>
 
     <FrameLayout xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -14,6 +18,11 @@
         android:layout_height="match_parent"
         tools:context=".kotlinsample.ui.fragments.home.HomeFragment">
 
+        <ProgressBar
+            android:id="@+id/progressHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerQuestions"

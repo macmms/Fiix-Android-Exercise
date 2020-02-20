@@ -1,5 +1,7 @@
 package fiix.challenge.fiixexercise.kotlinsample
 
+import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestion
+
 class MockRepo {
 
     val triviaQuestions = arrayListOf(
@@ -16,4 +18,6 @@ class MockRepo {
             TriviaQuestion("How many points is the Z tile worth in Scrabble?"),
             TriviaQuestion("Talos, the mythical giant bronze man, was the protector of which island?")
     )
+
+
 }

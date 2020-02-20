@@ -7,8 +7,8 @@ class EditQuestionViewModelFactory:ViewModelProvider.Factory {
 
     @Suppress("unchecked_cast")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(EditQuestionViewModelFactory::class.java)) {
-            return EditQuestionViewModelFactory() as T
+        if (modelClass.isAssignableFrom(EditQuestionViewModel::class.java)) {
+            return EditQuestionViewModel() as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
