@@ -54,6 +54,12 @@ class TriviaRepository(private val processor: DataProcessor, private val triviaD
         }
     }
 
+    fun updateTriviaItemAnswerRevaledFlag(triviaQuestionId: Int, answerRevealed: Boolean) {
+        return runBlocking {
+            updateTriviaAnswerRevealed(triviaQuestionId, answerRevealed).await()
+        }
+    }
+
     private fun insertQuestions(triviaQuestion: List<TriviaQuestion>) = CoroutineScope(Dispatchers.IO).async {
         triviaDAO.insertTriviaItem(triviaQuestion)
 
@@ -75,6 +81,11 @@ class TriviaRepository(private val processor: DataProcessor, private val triviaD
     private fun updateTriviaQuest(question: TriviaQuestion) = CoroutineScope(Dispatchers.IO)
             .async {
                 triviaDAO.updateTriviaItem(question)
+            }
+
+    private fun updateTriviaAnswerRevealed(questionId: Int, answerRevealed: Boolean) = CoroutineScope(Dispatchers.IO)
+            .async {
+                triviaDAO.updateTriviaItemAnswerFlag(questionId, answerRevealed)
             }
 
 }

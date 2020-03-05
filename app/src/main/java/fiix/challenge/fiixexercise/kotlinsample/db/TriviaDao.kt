@@ -18,4 +18,7 @@ abstract class TriviaDAO {
     @Query(value = "SELECT * FROM trivia  WHERE id = :questionId")
     abstract fun getTriviaQuestion(questionId: Int): TriviaQuestion
 
+    @Query(value = "UPDATE trivia SET answerRevealed = :answerRevealed  WHERE id = :questionId")
+    abstract fun updateTriviaItemAnswerFlag(questionId: Int, answerRevealed: Boolean)
+
 }

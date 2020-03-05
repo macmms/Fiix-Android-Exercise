@@ -2,6 +2,7 @@ package fiix.challenge.fiixexercise.kotlinsample.ui.activities
 
 import android.os.Bundle
 import fiix.challenge.fiixexercise.R
+import fiix.challenge.fiixexercise.kotlinsample.ui.fragments.EditTriviaFragment
 import fiix.challenge.fiixexercise.kotlinsample.ui.fragments.TriviaListFragment
 import fiix.challenge.fiixexercise.kotlinsample.ui.interfaces.OnClickListener
 
@@ -15,7 +16,7 @@ class MainActivity : BaseActivity() {
         addFragment(triviaFragment)
         triviaFragment.setOnClickListener(object : OnClickListener {
             override fun onClick(questionId: Int) {
-                //TODO Open EditFragment
+                replaceFragment(EditTriviaFragment.newInstance(questionId))
             }
         })
     }
