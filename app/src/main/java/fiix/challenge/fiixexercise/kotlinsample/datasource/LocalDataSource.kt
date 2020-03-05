@@ -1,4 +1,4 @@
-package fiix.challenge.fiixexercise.kotlinsample
+package fiix.challenge.fiixexercise.kotlinsample.datasource
 
 import fiix.challenge.fiixexercise.dp.DataSource
 
