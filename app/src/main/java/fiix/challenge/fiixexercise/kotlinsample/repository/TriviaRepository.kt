@@ -30,6 +30,12 @@ class TriviaRepository(private val processor: DataProcessor, private val triviaD
         insertAnswers(triviaQuestions)
     }
 
+    fun updateTrivia(triviaQuestion: TriviaQuestion) {
+        return runBlocking {
+            updateTriviaQuest(triviaQuestion).await()
+        }
+    }
+
     fun getTrivia(): LiveData<List<TriviaQuestion>> {
         val allQuestions = triviaDAO.getAll()
         questionsLive.addSource(allQuestions) { questions ->
@@ -66,5 +72,9 @@ class TriviaRepository(private val processor: DataProcessor, private val triviaD
     private fun getTrivia(questionId: Int) = CoroutineScope(Dispatchers.IO).async {
         triviaDAO.getTriviaQuestion(questionId)
     }
+    private fun updateTriviaQuest(question: TriviaQuestion) = CoroutineScope(Dispatchers.IO)
+            .async {
+                triviaDAO.updateTriviaItem(question)
+            }
 
 }
