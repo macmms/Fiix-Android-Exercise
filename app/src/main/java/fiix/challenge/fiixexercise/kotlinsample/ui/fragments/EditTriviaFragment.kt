@@ -47,8 +47,6 @@ class EditTriviaFragment : Fragment() {
         val triviaQuestionItem = triviaEditViewModel.getTriviaQuestion(questionId)
         question.setText(triviaQuestionItem.question)
         answer.setText(triviaQuestionItem.answer)
-        //val triviaViewmodel: TriviaEditViewModel = ViewModelProviders.of(this).get(TriviaEditViewModel::class.java)
-
 
         requireActivity().title = "Edit Trivia"
 

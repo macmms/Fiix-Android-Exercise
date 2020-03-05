@@ -51,6 +51,8 @@ class TriviaListFragment : Fragment(), QuestionActionListener {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.setHasFixedSize(true)
         recyclerView.adapter = adapter
+
+        requireActivity().title = "Trivia"
     }
 
     override fun onAnswerClicked(question: TriviaQuestion) {
