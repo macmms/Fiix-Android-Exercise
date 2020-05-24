@@ -1,6 +1,8 @@
 package fiix.challenge.fiixexercise.kotlinsample.data.db.trivia
 
 import androidx.room.*
+import io.reactivex.Flowable
+import io.reactivex.Single
 
 /**
  * DAO for the Trivia table
@@ -15,8 +17,9 @@ interface TriviaDao {
     fun update(trivia: Trivia)
 
     @Query("SELECT * FROM trivia")
-    fun getAllTrivia(): List<Trivia>
+    fun getAllTrivia(): Single<List<Trivia>>
+
 
     @Query("SELECT * FROM trivia WHERE id == :id")
-    fun getTrivia(id: String): Trivia?
+    fun getTrivia(id: String): Flowable<Trivia>
 }

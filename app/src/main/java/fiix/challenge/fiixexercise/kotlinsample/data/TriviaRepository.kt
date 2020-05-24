@@ -1,9 +1,6 @@
 package fiix.challenge.fiixexercise.kotlinsample.data
 
-import android.annotation.SuppressLint
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import fiix.challenge.fiixexercise.dp.DataProcessor
 import fiix.challenge.fiixexercise.kotlinsample.data.db.TriviaDatabase
 import fiix.challenge.fiixexercise.kotlinsample.data.db.trivia.DefaultTriviaProvider
@@ -19,53 +16,49 @@ class TriviaRepository(
         private val triviaDatabase: TriviaDatabase,
         private val dataProcessor: DataProcessor
 ) {
-    //todo: figure out update item and observe change for singleItem
-
-    val triviaLiveData = MutableLiveData<List<Trivia>>()
-
-    fun getTriviaLiveData(): LiveData<List<Trivia>> {
-        return triviaLiveData
-    }
 
     /**
      * Attempts to retrieve trivia from table and populates it if table is empty
      * */
-    @SuppressLint("CheckResult")
-    fun fetchTrivia() {
-        Single.just(triviaDatabase.triviaDao())
+    fun getTrivia(): Single<List<Trivia>> {
+        return triviaDatabase.triviaDao().getAllTrivia()
+                .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .subscribe { dao ->
-                    val triviaFromDb = dao.getAllTrivia()
-                    if (triviaFromDb.isNullOrEmpty()) {
-                        populateTriviaInDb()
-                    } else {
-                        triviaLiveData.postValue(triviaFromDb)
+                .flatMap { triviaFromDb ->
+                    if (!triviaFromDb.isNullOrEmpty()) {
+                        return@flatMap Single.just(triviaFromDb)
                     }
+                    return@flatMap populateTriviaInDb()
                 }
     }
 
     /**
      * Populates trivia table with default questions and answers
+     * @return The Trivia in the db
      * */
-    @SuppressLint("CheckResult")
-    private fun populateTriviaInDb() {
+    private fun populateTriviaInDb(): Single<List<Trivia>> {
         val questionsCall = Single.just(DefaultTriviaProvider.getTrivia()).subscribeOn(Schedulers.io())
         val answersCall = Single.just(dataProcessor.getAnswers()).subscribeOn(Schedulers.io())
 
-        Single.zip(questionsCall, answersCall, BiFunction<List<Trivia>, List<String>, List<Trivia>> { trivia, answers ->
-            if (trivia.size != answers.size) {
-                Log.e("TriviaRepository", "trivia size:${trivia.size} != answers' size:${answers.size} ")
-                return@BiFunction emptyList<Trivia>() //todo: make me an error type instead ?
-            } else {
-                for (i in trivia.indices) {
-                    trivia[i].answer = answers[i]
-                }
-                triviaDatabase.triviaDao().insert(trivia)
-                return@BiFunction triviaDatabase.triviaDao().getAllTrivia()
-            }
-        }).subscribeOn(Schedulers.io()).subscribe { questionsFromDb ->
-            triviaLiveData.postValue(questionsFromDb)
+        return Single.zip(questionsCall, answersCall, BiFunction<List<Trivia>, List<String>, Unit> { trivia, answers ->
+            return@BiFunction buildAndInsertTriviaIntoDb(trivia, answers)
+        }).subscribeOn(Schedulers.io()).flatMap {
+            return@flatMap triviaDatabase.triviaDao().getAllTrivia() //todo: return an error object
         }
+    }
+
+    /**
+     * This function updates the trivia with correct answers and inserts them into db.
+     * */
+    private fun buildAndInsertTriviaIntoDb(trivia: List<Trivia>, answers: List<String>) {
+        if (trivia.size != answers.size) {
+            Log.e("TriviaRepository", "trivia size:${trivia.size} != answers' size:${answers.size} ")
+            return
+        }
+        for (i in trivia.indices) {
+            trivia[i].answer = answers[i]
+        }
+        triviaDatabase.triviaDao().insert(trivia)
     }
 
 }
