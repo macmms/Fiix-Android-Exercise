@@ -1,13 +1,16 @@
 package fiix.challenge.fiixexercise.kotlinsample.data.db
 
 import android.app.Application
+import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import fiix.challenge.fiixexercise.kotlinsample.data.db.trivia.Trivia
 import fiix.challenge.fiixexercise.kotlinsample.data.db.trivia.TriviaDao
 
 /**
  * This is the Database class for the application
  */
+@Database(entities = [Trivia::class], version = 1)
 abstract class TriviaDatabase : RoomDatabase() {
 
     companion object {

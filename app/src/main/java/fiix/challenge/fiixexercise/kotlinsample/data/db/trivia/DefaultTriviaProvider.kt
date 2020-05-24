@@ -1,13 +1,11 @@
 package fiix.challenge.fiixexercise.kotlinsample.data.db.trivia
 
 /**
- * Class provides a collection of trivia with just questions to populate the table.
+ * Provides a collection of trivia with just questions to populate the table.
  */
-class DefaultTriviaProvider {
+object DefaultTriviaProvider {
 
-    val trivia = initTrivia()
-
-    private fun initTrivia(): List<Trivia> {
+    fun getTrivia(): List<Trivia> {
         return mutableListOf<Trivia>().apply {
             add(Trivia(
                     question = "How many books are in the Chronicles of Narnia series?"
