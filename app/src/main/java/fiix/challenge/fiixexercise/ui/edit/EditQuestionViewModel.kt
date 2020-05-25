@@ -9,7 +9,6 @@ import fiix.challenge.fiixexercise.db.ioThread
 import fiix.challenge.fiixexercise.kotlinsample.db.TriviaQuestion
 import fiix.challenge.fiixexercise.ui.TriviaQuestionModel
 
-
 class EditQuestionViewModel constructor(private val repository: TriviaQuestionRepository) : ViewModel() {
 
     private val _triviaQuestionLiveData: MutableLiveData<Int> = MutableLiveData()
@@ -31,7 +30,7 @@ class EditQuestionViewModel constructor(private val repository: TriviaQuestionRe
         val temp = triviaQuestionLiveData.value
         temp?.id?.let {
             val updatedQuestion = TriviaQuestion(temp.id, question, answer)
-            ioThread { repository.updateQuestion(updatedQuestion) }
+             repository.updateQuestion(updatedQuestion)
         }
     }
 }

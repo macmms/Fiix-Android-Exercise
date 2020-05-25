@@ -50,6 +50,7 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation "androidx.arch.core:core-runtime:2.1.0" // todo find which component uses 2.0.1
     implementation "androidx.recyclerview:recyclerview:1.1.0"
+    implementation 'com.google.android.material:material:1.1.0'
 //    implementation 'androidx.core:core-ktx:1.2.0'
 //    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation "androidx.coordinatorlayout:coordinatorlayout:1.1.0"

@@ -12,7 +12,6 @@ import fiix.challenge.fiixexercise.R
 import fiix.challenge.fiixexercise.ui.ViewModelFactory
 import fiix.challenge.fiixexercise.ui.trivialist.adapter.TriviaListAdapter
 import kotlinx.android.synthetic.main.trivia_list_fragment.*
-import java.lang.ClassCastException
 
 class TriviaListFragment : Fragment() {
 
@@ -30,7 +29,7 @@ class TriviaListFragment : Fragment() {
         super.onAttach(context)
         listener = context as? OnTriviaQuestionSelectedListener
 
-        if(listener == null){
+        if (listener == null) {
             throw ClassCastException("Activity must implement OnTriviaQuestionSelectedListener")
         }
     }
@@ -51,6 +50,17 @@ class TriviaListFragment : Fragment() {
         })
         viewModel.listener = listener
         viewModel.loadTriviaList()
+
+        toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_reset -> {
+                    viewModel.loadTriviaList()
+                    true
+                }
+                else -> false
+            }
+        }
+
     }
 
 }

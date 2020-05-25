@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -16,9 +17,11 @@ class EditQuestionFragment : Fragment() {
     companion object {
         fun newInstance(questionId: Int) = EditQuestionFragment().apply {
             arguments = Bundle().apply {
-                putInt("QUESTION_ID", questionId)
+                putInt(QUESTION_ID_ARG_KEY, questionId)
             }
         }
+
+        private const val QUESTION_ID_ARG_KEY = "QUESTION_ID"
     }
 
     private val viewModel: EditQuestionViewModel by viewModels {
@@ -39,9 +42,11 @@ class EditQuestionFragment : Fragment() {
             answer.setText(it.answer)
         })
 
-
-        arguments?.getInt("QUESTION_ID")?.let { viewModel.loadQuestion(it) }
-        saveButton.setOnClickListener { viewModel.save(question = question.text.toString(), answer = answer.text.toString()) }
+        arguments?.getInt(QUESTION_ID_ARG_KEY)?.let { viewModel.loadQuestion(it) }
+        saveButton.setOnClickListener {
+            viewModel.save(question = question.text.toString(), answer = answer.text.toString())
+            Toast.makeText(requireContext(), R.string.saving_question, Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

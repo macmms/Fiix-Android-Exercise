@@ -4,4 +4,7 @@
     <string name="enter_answer_hint">Enter Answer</string>
     <string name="enter_question_hint">Enter question</string>
     <string name="save">SAVE</string>
+    <string name="reset">Reset</string>
+    <string name="trivia_list_title">Trivia Questions</string>
+    <string name="saving_question">Saving…</string>
 </resources>
