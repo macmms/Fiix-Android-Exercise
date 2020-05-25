@@ -8,8 +8,9 @@ import androidx.room.PrimaryKey
  */
 @Entity
 data class Trivia(
-        var question: String,
-        var answer: String? = null,
+        val question: String,
+        val answer: String? = null,
+        val isAnswerRevealed: Boolean = false,
         @PrimaryKey(autoGenerate = true) val id: Int = 0
 ) {
     companion object {

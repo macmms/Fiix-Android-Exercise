@@ -11,7 +11,7 @@ import io.reactivex.Single
 interface TriviaDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insert(trivia: List<Trivia>)
+    fun insert(trivia: List<Trivia>): Single<List<Long>>
 
     @Update
     fun update(trivia: Trivia)
@@ -19,7 +19,7 @@ interface TriviaDao {
     @Query("SELECT * FROM trivia")
     fun getAllTrivia(): Single<List<Trivia>>
 
-
     @Query("SELECT * FROM trivia WHERE id == :id")
-    fun getTrivia(id: String): Flowable<Trivia>
+    fun getTrivia(id: Int): Flowable<Trivia>
+
 }

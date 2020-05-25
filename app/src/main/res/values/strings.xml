@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">FiixExercise</string>
+    <string name="reveal_button">Reveal Answer</string>
+    <string name="edit_question_hint">Question</string>
+    <string name="edit_answer_hint">Answer</string>
+    <string name="edit_save_button">Save</string>
 </resources>
