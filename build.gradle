@@ -33,6 +33,7 @@ ext {
     rxAndroidVersion = "2.0.1"
     lifecycleExtVersion = "2.2.0"
     cardVersion = "1.0.0"
+    lottieVersion = "3.4.0"
 
     jUnitVersion = "4.12"
     androidJUnitVersion = "1.1.1"

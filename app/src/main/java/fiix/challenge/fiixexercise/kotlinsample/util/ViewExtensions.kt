@@ -1,6 +1,7 @@
 package fiix.challenge.fiixexercise.kotlinsample.util
 
 import android.view.View
+import com.airbnb.lottie.LottieAnimationView
 
 /**
  * Extension functions for the View classes for convenience
@@ -11,4 +12,37 @@ fun View.hide() {
 
 fun View.show() {
     visibility = View.VISIBLE
+}
+
+/**
+ * Makes the LottieAnimationView visible and starts the animation
+ * */
+fun LottieAnimationView.start() {
+    progress = 0f
+    show()
+    playAnimation()
+}
+
+/**
+ * Cancels the lottie animation and then hides the LottieAnimationView
+ * */
+fun LottieAnimationView.stop() {
+    cancelAnimation()
+    hide()
+}
+
+/**
+ * Simple debounce implementation
+ * */
+fun View.setThrottledClickListener(delayInMillis: Long = 500L, runWhenClicked: SimpleCallback) {
+    setOnClickListener {
+        this.isClickable = false
+        this.postDelayed(
+                {
+                    this.isClickable = true
+                },
+                delayInMillis
+        )
+        runWhenClicked()
+    }
 }

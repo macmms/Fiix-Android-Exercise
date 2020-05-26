@@ -10,6 +10,7 @@ import fiix.challenge.fiixexercise.R
 import fiix.challenge.fiixexercise.kotlinsample.data.db.trivia.Trivia
 import fiix.challenge.fiixexercise.kotlinsample.util.SimpleCallback
 import fiix.challenge.fiixexercise.kotlinsample.util.hide
+import fiix.challenge.fiixexercise.kotlinsample.util.setThrottledClickListener
 import fiix.challenge.fiixexercise.kotlinsample.util.show
 
 /**
@@ -37,10 +38,10 @@ class TriviaViewHolder private constructor(itemView: View) : RecyclerView.ViewHo
             revealButton.show()
             answerView.hide()
         }
-        itemView.setOnClickListener {
+        itemView.setThrottledClickListener {
             itemClicked()
         }
-        revealButton.setOnClickListener {
+        revealButton.setThrottledClickListener {
             revealButtonClicked()
         }
     }

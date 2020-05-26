@@ -9,6 +9,10 @@ import fiix.challenge.fiixexercise.R
 import fiix.challenge.fiixexercise.kotlinsample.data.db.trivia.Trivia
 import fiix.challenge.fiixexercise.kotlinsample.ui.BaseFragment
 import fiix.challenge.fiixexercise.kotlinsample.ui.list.adapter.TriviaListAdapter
+import fiix.challenge.fiixexercise.kotlinsample.util.hide
+import fiix.challenge.fiixexercise.kotlinsample.util.show
+import fiix.challenge.fiixexercise.kotlinsample.util.start
+import fiix.challenge.fiixexercise.kotlinsample.util.stop
 import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
@@ -23,7 +27,6 @@ class ListFragment : BaseFragment() {
             }
         }
     }
-
 
     private val listAdapter = TriviaListAdapter(object : TriviaListAdapter.Listener {
         override fun onTriviaClicked(trivia: Trivia) {
@@ -51,10 +54,21 @@ class ListFragment : BaseFragment() {
 
     private fun initData() {
         val viewModel = hostCallback.getViewModel()
+        showLoadingView()
         viewModel.getAllTrivia().observe(viewLifecycleOwner, Observer { trivia ->
+            showListView()
             listAdapter.submitList(trivia)
         })
+    }
 
+    private fun showLoadingView() {
+        list_screen_recyclerview.hide()
+        list_screen_loading_view.start()
+    }
+
+    private fun showListView() {
+        list_screen_loading_view.stop()
+        list_screen_recyclerview.show()
     }
 
 }
