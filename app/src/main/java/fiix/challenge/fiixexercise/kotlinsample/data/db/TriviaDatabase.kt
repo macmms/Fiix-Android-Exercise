@@ -31,7 +31,7 @@ abstract class TriviaDatabase : RoomDatabase() {
         }
 
         /**
-         * Creates an instance of the database and populates it.
+         * Creates an instance of the database
          **/
         private fun createInstance(application: Application): TriviaDatabase {
             return Room.databaseBuilder(application, TriviaDatabase::class.java, DB_NAME).build()

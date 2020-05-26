@@ -34,7 +34,7 @@ ext {
     lifecycleExtVersion = "2.2.0"
     cardVersion = "1.0.0"
     lottieVersion = "3.4.0"
-
+    mockitoVersion = "2.8.9"
     jUnitVersion = "4.12"
     androidJUnitVersion = "1.1.1"
     espressoVersion ="3.1.0"

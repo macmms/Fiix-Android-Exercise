@@ -1,7 +1,7 @@
 package fiix.challenge.fiixexercise.kotlinsample.data
 
 import android.annotation.SuppressLint
-import android.util.Log
+import androidx.annotation.VisibleForTesting
 import fiix.challenge.fiixexercise.dp.DataProcessor
 import fiix.challenge.fiixexercise.kotlinsample.data.db.TriviaDatabase
 import fiix.challenge.fiixexercise.kotlinsample.data.db.trivia.DefaultTriviaProvider
@@ -52,10 +52,6 @@ class TriviaRepository(
         val answersCall = Single.just(dataProcessor.getAnswers()).subscribeOn(Schedulers.io())
 
         return Single.zip(questionsCall, answersCall, BiFunction<List<Trivia>, List<String>, List<Trivia>> { trivia, answers ->
-            if (trivia.size != answers.size) {
-                Log.e("TriviaRepository", "trivia size:${trivia.size} != answers' size:${answers.size} ")
-                return@BiFunction emptyList<Trivia>()
-            }
             return@BiFunction updateTriviaWithAnswers(trivia, answers)
         }).subscribeOn(Schedulers.io()).flatMap { updatedTrivia ->
             if (updatedTrivia.isEmpty()) {
@@ -70,9 +66,13 @@ class TriviaRepository(
     }
 
     /**
-     * This function updates the trivia with correct answers and returns the new list.
+     * This function updates the trivia with correct answers and returns the result.
      * */
-    private fun updateTriviaWithAnswers(trivia: List<Trivia>, answers: List<String>): List<Trivia> {
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    fun updateTriviaWithAnswers(trivia: List<Trivia>, answers: List<String>): List<Trivia> {
+        if (trivia.size != answers.size) {
+            emptyList<Trivia>()
+        }
         val updatedTrivia = arrayListOf<Trivia>()
         for (i in trivia.indices) {
             updatedTrivia.add(trivia[i].copy(answer = answers[i]))

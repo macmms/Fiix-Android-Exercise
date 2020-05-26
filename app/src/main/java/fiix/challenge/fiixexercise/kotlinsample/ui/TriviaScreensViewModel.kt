@@ -57,22 +57,4 @@ class TriviaScreensViewModel(private val repository: TriviaRepository) : ViewMod
                 }
     }
 
-
-    private val currentScreen = MutableLiveData<Screen>()
-    private val currentDataState = MutableLiveData<DataState>()
-
-    /**
-     * Defines the possible screens that can be shown
-     * */
-    enum class Screen {
-        LIST, EDIT
-    }
-
-    /**
-     * Defines the possible states the data can be in
-     * */
-    enum class DataState {
-        LOADING, FETCHED
-    }
-
 }
