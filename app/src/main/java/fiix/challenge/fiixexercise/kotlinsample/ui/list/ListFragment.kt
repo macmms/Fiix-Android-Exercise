@@ -21,20 +21,18 @@ import kotlinx.android.synthetic.main.fragment_list.*
 class ListFragment : BaseFragment() {
 
     companion object {
-        fun newInstance(hostCallback: HostCallback): ListFragment {
-            return ListFragment().apply {
-                this.hostCallback = hostCallback
-            }
+        fun newInstance(): ListFragment {
+            return ListFragment()
         }
     }
 
     private val listAdapter = TriviaListAdapter(object : TriviaListAdapter.Listener {
         override fun onTriviaClicked(trivia: Trivia) {
-            hostCallback.getViewModel().setTriviaToEdit(trivia)
+            viewModel.setTriviaToEdit(trivia)
         }
 
         override fun onRevealAnswerClicked(trivia: Trivia) {
-            hostCallback.getViewModel().revealTriviaAnswer(trivia)
+            viewModel.revealTriviaAnswer(trivia)
         }
     })
 
@@ -53,7 +51,6 @@ class ListFragment : BaseFragment() {
     }
 
     private fun initData() {
-        val viewModel = hostCallback.getViewModel()
         showLoadingView()
         viewModel.getAllTrivia().observe(viewLifecycleOwner, Observer { trivia ->
             showListView()
