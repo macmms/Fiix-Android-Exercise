@@ -15,7 +15,6 @@ class MainActivity : AppCompatActivity(), OnTriviaQuestionSelectedListener {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                     .replace(R.id.container, TriviaListFragment.newInstance())
-                    .addToBackStack(null)
                     .commit()
         }
     }
