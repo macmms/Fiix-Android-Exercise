@@ -4,18 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import fiix.challenge.fiixexercise.R
 import fiix.challenge.fiixexercise.kotlinsample.data.db.trivia.Trivia
-import fiix.challenge.fiixexercise.kotlinsample.ui.TriviaScreensViewModel
+import fiix.challenge.fiixexercise.kotlinsample.ui.BaseFragment
 import fiix.challenge.fiixexercise.kotlinsample.ui.list.adapter.TriviaListAdapter
 import kotlinx.android.synthetic.main.fragment_list.*
 
 /**
  * Fragment for the list screen
  */
-class ListFragment : Fragment() {
+class ListFragment : BaseFragment() {
 
     companion object {
         fun newInstance(hostCallback: HostCallback): ListFragment {
@@ -25,7 +24,6 @@ class ListFragment : Fragment() {
         }
     }
 
-    private lateinit var hostCallback: HostCallback
 
     private val listAdapter = TriviaListAdapter(object : TriviaListAdapter.Listener {
         override fun onTriviaClicked(trivia: Trivia) {
@@ -57,15 +55,6 @@ class ListFragment : Fragment() {
             listAdapter.submitList(trivia)
         })
 
-        //todo: do I belong in the activity ?
-        viewModel.getTriviaToEdit().observe(viewLifecycleOwner, Observer { trivia ->
-            hostCallback.loadEditScreen()
-        })
-    }
-
-    interface HostCallback {
-        fun getViewModel(): TriviaScreensViewModel
-        fun loadEditScreen()
     }
 
 }

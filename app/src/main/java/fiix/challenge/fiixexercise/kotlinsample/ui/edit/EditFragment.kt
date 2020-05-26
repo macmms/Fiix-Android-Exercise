@@ -4,16 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import fiix.challenge.fiixexercise.R
-import fiix.challenge.fiixexercise.kotlinsample.ui.TriviaScreensViewModel
+import fiix.challenge.fiixexercise.kotlinsample.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_edit.*
 
 /**
  * Fragment for edit screen
  */
-class EditFragment : Fragment() {
+class EditFragment : BaseFragment() {
 
     companion object {
         const val TAG = "EditFragment"
@@ -25,8 +24,6 @@ class EditFragment : Fragment() {
         }
     }
 
-    private lateinit var hostCallback: HostCallback
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_edit, container, false)
     }
@@ -35,7 +32,6 @@ class EditFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
     }
-
 
     private fun initViews() {
         val viewModel = hostCallback.getViewModel()
@@ -61,10 +57,6 @@ class EditFragment : Fragment() {
 
     private fun exitScreen() {
         activity?.onBackPressed()
-    }
-
-    interface HostCallback {
-        fun getViewModel(): TriviaScreensViewModel
     }
 
 }
