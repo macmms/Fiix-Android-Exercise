@@ -42,9 +42,11 @@ class TriviaListFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         val adapter = TriviaListAdapter(viewModel)
+        progress_bar.show()
         trivia_list.adapter = adapter
         viewModel.triviaListLiveData.observe(viewLifecycleOwner, Observer { triviaList ->
             triviaList?.let {
+                progress_bar.hide()
                 adapter.setQuestionList(it)
             }
         })
