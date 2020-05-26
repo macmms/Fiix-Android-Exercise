@@ -31,8 +31,8 @@
             android:id="@+id/trivia_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingEnd="4dp"
-            android:paddingStart="4dp"
+            android:paddingEnd="@dimen/small_padding"
+            android:paddingStart="@dimen/small_padding"
             app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
             app:spanCount="2"
             tools:listitem="@layout/trivia_item" />

@@ -11,8 +11,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp">
+        android:paddingBottom="@dimen/medium_padding"
+        android:paddingTop="@dimen/medium_padding">
 
         <Button
             android:id="@+id/trivia_answer"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
             android:gravity="center_horizontal"
-            android:padding="8dp"
+            android:padding="@dimen/medium_padding"
             android:textColor="@color/dark"
             android:textSize="@dimen/text_size"
             android:textStyle="bold"
