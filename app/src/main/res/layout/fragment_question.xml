@@ -5,17 +5,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="fiix.challenge.fiixexercise.javasample.Views.Activity.MainActivity">
+    >
 
-    <fragment
+
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/myNavHostFragment"
-        app:navGraph="@navigation/navigation"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:defaultNavHost="true"
-        >
-
-    </fragment>
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/question_reclerview"
+        android:background="#ffffff"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="2dp"
+    android:padding="2dp"
+    app:cardElevation="6dp"
+    android:layout_marginTop="5dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:orientation="vertical"
+        android:id="@+id/item_card"
+        >
+
+
+        <TextView
+            android:id="@+id/question"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            android:text="question is"
+            android:padding="5dp"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="answer is "
+            android:layout_below="@+id/question"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:padding="5dp"
+            />
+        <TextView
+            android:id="@+id/answerbutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/answer"
+            android:text="@string/answer"
+            android:padding="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:background="@color/colorPrimary"/>
+
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
+

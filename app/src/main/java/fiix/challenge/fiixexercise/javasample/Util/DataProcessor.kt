@@ -1,7 +1,11 @@
-package fiix.challenge.fiixexercise.dp
+package com.example.triviaquizapp.Util
 
+
+import fiix.challenge.fiixexercise.javasample.Listners.DataSource
+import fiix.challenge.fiixexercise.javasample.Model.TriviaQuestion
 import kotlinx.coroutines.*
 import kotlin.random.Random
+
 
 class DataProcessor(private val source: DataSource) {
 
@@ -11,7 +15,7 @@ class DataProcessor(private val source: DataSource) {
     val delayModifier = Random.nextLong(2, 30)
 
 
-    fun getAnswers(): List<String> {
+    fun getQustionAnswers(): List<TriviaQuestion> {
         return runBlocking {
             processDataAsync().await()
         }
@@ -19,16 +23,10 @@ class DataProcessor(private val source: DataSource) {
 
     //DO NOT MODIFY THIS FUNCTION
     private suspend fun processDataAsync()= scope.async {
-            delay(1000 * delayModifier)
-            source.getData()
+        delay(1000 * delayModifier)
+        source.getData()
     }
 
 }
-
-interface DataSource {
-    fun getData(): List<String>
-}
-
-
 
 

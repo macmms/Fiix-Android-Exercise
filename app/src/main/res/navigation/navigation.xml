@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/questionFragment">
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="fiix.challenge.fiixexercise.javasample.Views.Fragments.QuestionListFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question" >
+
+
+        <action
+            android:id="@+id/action_questionFragment_to_detailFragment2"
+            app:destination="@id/detailFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment2"
+        android:name="fiix.challenge.fiixexercise.javasample.Views.Fragments.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
+
+</navigation>

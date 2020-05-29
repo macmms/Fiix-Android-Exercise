@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    android:id="@+id/item_card"
+    >
+
+
+    <EditText
+        android:id="@+id/question"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textColor="@color/black"
+        android:textSize="17dp"
+
+        android:padding="5dp"
+        android:textStyle="bold" />
+    <EditText
+        android:layout_marginTop="5dp"
+        android:id="@+id/answer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/question"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:padding="5dp"
+       />
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/savebutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/answer"
+        android:text="@string/save"
+        android:padding="10dp"
+        android:textColor="#ffffff"
+        android:background="@color/colorPrimary"/>
+
+
+
+</RelativeLayout>
