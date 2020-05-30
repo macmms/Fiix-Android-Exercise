@@ -3,4 +3,12 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorAnswer">#4CAF50</color>
+    <color name="colorBorderEdittext">#58595b</color>
+    <color name="colorTextView">#58595b</color>
+    <color name="colorEdittext">#9d9fa2</color>
+    <color name="colorTextButton">@android:color/white</color>
+    <color name="colorBackgroundButton">#00afeb</color>
+    <color name="colorBackgroundButtonDisabled">#58595b</color>
+    <color name="colorBackgroundAlert">#00afeb</color>
 </resources>

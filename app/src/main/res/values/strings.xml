@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">FiixExercise</string>
+    <string name="label_answer">answer</string>
+    <string name="label_question">question</string>
+    <string name="title_fiix_android_exercise">Fiix Android Exercise</string>
+    <string name="button_save">save</string>
+    <string name="button_answer">answer</string>
+    <string name="message_load_trivia_error">Load Trivia Error!</string>
+    <string name="message_invalid_question">Please, enter a valid Question!</string>
+    <string name="message_invalid_answer">Please, enter a valid Answer!</string>
+    <string name="message_save_success">Trivia updated successfully</string>
+    <string name="reset_trivia">reset trivia</string>
 </resources>
