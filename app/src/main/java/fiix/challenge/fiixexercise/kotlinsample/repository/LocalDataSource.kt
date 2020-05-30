@@ -1,6 +1,7 @@
-package fiix.challenge.fiixexercise.kotlinsample
+package fiix.challenge.fiixexercise.kotlinsample.repository
 
 import fiix.challenge.fiixexercise.dp.DataSource
+import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestion
 
 class LocalDataSource : DataSource{
     override fun getData(): List<String> {
@@ -19,4 +20,6 @@ class LocalDataSource : DataSource{
                 "Crete"
         )
     }
+
+    override fun getDataQuestions(): ArrayList<TriviaQuestion> = MockRepo.triviaQuestions
 }

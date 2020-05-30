@@ -1,8 +1,10 @@
-package fiix.challenge.fiixexercise.kotlinsample
+package fiix.challenge.fiixexercise.kotlinsample.repository
+
+import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestion
 
 class MockRepo {
-
-    val triviaQuestions = arrayListOf(
+    companion object {
+        val triviaQuestions = arrayListOf(
             TriviaQuestion("How many books are in the Chronicles of Narnia series?"),
             TriviaQuestion("Green Eggs and Ham is a book by which author?"),
             TriviaQuestion("What is the title of the first Sherlock Holmes book by Arthur Conan Doyle?"),
@@ -15,5 +17,6 @@ class MockRepo {
             TriviaQuestion("How many pieces are there on the board at the start of a game of chess?"),
             TriviaQuestion("How many points is the Z tile worth in Scrabble?"),
             TriviaQuestion("Talos, the mythical giant bronze man, was the protector of which island?")
-    )
+        )
+    }
 }
