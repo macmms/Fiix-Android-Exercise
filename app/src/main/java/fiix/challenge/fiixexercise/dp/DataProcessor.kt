@@ -10,7 +10,7 @@ class DataProcessor(private val source: DataSource) {
     //DO NOT MODIFY
     val scope = CoroutineScope(Dispatchers.Default)
     //DO NOT MODIFY
-    val delayModifier = 5L // Random.nextLong(2, 30)
+    val delayModifier = Random.nextLong(2, 30)
 
 
     suspend fun getAnswers(): Deferred<List<String>> = processDataAsync()

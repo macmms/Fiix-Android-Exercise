@@ -1,6 +1,5 @@
 package fiix.challenge.fiixexercise.kotlinsample
 
-import android.content.ClipData.newIntent
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -41,7 +40,26 @@ class MainActivity : AppCompatActivity(), MainView, MainRvAdapter.QnaSelectListe
         adapter.updateData(questions)
     }
 
-    override fun onItemSelected(triviaQuestion: TriviaQuestion) {
-        startActivity(QnADetailsActivity.newIntent(this, triviaQuestion))
+    override fun onItemSelected(triviaQuestion: TriviaQuestion, adapterPosition: Int) {
+        startActivityForResult(QnADetailsActivity.newIntent(this, triviaQuestion, adapterPosition), REQ_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == REQ_CODE) {
+            if (resultCode == QnADetailsActivity.RESULT_QNA_CHANGED) {
+                if (data == null) {
+                    // log to Crashlytics or crash
+                } else {
+                    val postion = data.getIntExtra(QnADetailsActivity.ARG_QNA_POS, -1)
+                    adapter.notifyItemChanged(postion)
+                }
+            } else {
+                // no-op
+            }
+        }
+    }
+
+    companion object {
+        private const val REQ_CODE = 324
     }
 }

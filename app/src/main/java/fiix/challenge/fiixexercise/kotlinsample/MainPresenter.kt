@@ -11,7 +11,6 @@ class MainPresenter(val dp: DataProcessor, val view: MainView) : CoroutineScope 
 
     fun bind() {
         launch {
-            println("start")
             val answersDeferred = dp.getAnswers()
             val questionsDeferred = dp.getQuestions()
             // wait for both async jobs to finish
@@ -26,7 +25,6 @@ class MainPresenter(val dp: DataProcessor, val view: MainView) : CoroutineScope 
                     triviaQuestion.answer = answers[index]
                 }
                 withContext(Dispatchers.Main) {
-                    println("update UI")
                     view.showQuestions(questions)
                 }
             }

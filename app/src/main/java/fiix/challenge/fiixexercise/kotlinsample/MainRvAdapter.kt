@@ -10,7 +10,7 @@ import fiix.challenge.fiixexercise.R
 
 class MainRvAdapter(private var qnas: List<TriviaQuestion> = emptyList(), val selectListener: QnaSelectListener) : RecyclerView.Adapter<MainRvAdapter.ViewHolder>() {
     interface QnaSelectListener {
-        fun onItemSelected(triviaQuestion: TriviaQuestion)
+        fun onItemSelected(triviaQuestion: TriviaQuestion, adapterPosition: Int)
     }
 
     class ViewHolder(itemView: View, private val selectListener: QnaSelectListener) : RecyclerView.ViewHolder(itemView) {
@@ -32,7 +32,7 @@ class MainRvAdapter(private var qnas: List<TriviaQuestion> = emptyList(), val se
                 ctaAnswer.visibility = View.GONE
             }
             itemView.setOnClickListener {
-                selectListener.onItemSelected(triviaQuestion)
+                selectListener.onItemSelected(triviaQuestion, adapterPosition)
             }
         }
 
@@ -51,5 +51,9 @@ class MainRvAdapter(private var qnas: List<TriviaQuestion> = emptyList(), val se
     fun updateData(questions: List<TriviaQuestion>) {
         this.qnas = questions
         notifyDataSetChanged()
+    }
+
+    fun updateData(questions: TriviaQuestion?) {
+
     }
 }
