@@ -2,6 +2,7 @@ package fiix.challenge.fiixexercise.kotlinsample
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.widget.Toast
 import fiix.challenge.fiixexercise.R
@@ -10,14 +11,18 @@ import fiix.challenge.fiixexercise.dp.DataProcessor
 class MainActivity : AppCompatActivity(), MainView {
 
     private val dp = DataProcessor(LocalDataSource())
-    private val presenter by lazy {
-        MainPresenter(dp, this)
-    }
+    lateinit var presenter: MainPresenter
+    lateinit var adapter: MainRvAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val rvMain: RecyclerView = findViewById(R.id.rv_main)
+        adapter = MainRvAdapter()
+        rvMain.adapter = adapter
+
+        presenter = MainPresenter(dp, this)
         presenter.bind()
     }
 
@@ -32,6 +37,6 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun showQuestions(questions: List<TriviaQuestion>) {
         Toast.makeText(this, "${questions.size} questions found", Toast.LENGTH_SHORT).show()
-        Toast.makeText(this, "answer of 3rd question is ${questions[2].answer}", Toast.LENGTH_LONG).show()
+        adapter.updateData(questions)
     }
 }
