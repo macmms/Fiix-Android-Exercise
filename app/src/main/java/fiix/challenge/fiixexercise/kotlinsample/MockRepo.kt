@@ -1,6 +1,6 @@
 package fiix.challenge.fiixexercise.kotlinsample
 
-class MockRepo {
+object MockRepo {
 
     val triviaQuestions = arrayListOf(
             TriviaQuestion("How many books are in the Chronicles of Narnia series?"),
