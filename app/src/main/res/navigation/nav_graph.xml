@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/listQuestionsFragment">
+
+    <fragment
+        android:id="@+id/listQuestionsFragment"
+        android:name="fiix.challenge.fiixexercise.kotlinsample.fragment.ListQuestionsFragment"
+        android:label="ListQuestionsFragment"
+        tools:layout="@layout/fragment_list_questions">
+        <action
+            android:id="@+id/action_listQuestionsFragment_to_editQuestionsFragment"
+            app:destination="@id/editQuestionsFragment"
+            app:enterAnim="@anim/fragment_fade_enter"/>
+    </fragment>
+    <fragment
+        android:id="@+id/editQuestionsFragment"
+        android:name="fiix.challenge.fiixexercise.kotlinsample.fragment.EditQuestionsFragment"
+        android:label="fragment_edit_questions"
+        tools:layout="@layout/fragment_edit_questions" >
+        <argument
+            android:name="trivia"
+            app:argType="fiix.challenge.fiixexercise.kotlinsample.dto.TriviaDTO"
+            app:nullable="true"/>
+    </fragment>
+</navigation>
