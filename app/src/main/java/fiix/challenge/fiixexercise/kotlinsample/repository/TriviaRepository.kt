@@ -28,10 +28,6 @@ class TriviaRepository(context: Context) {
             }
     }
 
-    /*suspend fun getTrivia(id: Int) : TriviaDTO {
-        return TriviaMapper.entityToDto(triviaDAO.getTrivia(id))
-    }*/
-
     suspend fun areThereQuestions(): Boolean {
         return triviaDAO.areThereQuestions() > 0
     }

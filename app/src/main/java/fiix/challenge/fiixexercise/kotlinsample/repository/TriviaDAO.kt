@@ -27,4 +27,7 @@ interface TriviaDAO {
 
     @Query("UPDATE Trivia SET status = ${Constants.STATUS_ORIGINAL} ")
     suspend fun resetTrivia(): Int
+
+    @Query("DELETE FROM Trivia")
+    suspend fun deleteAll() : Int
 }

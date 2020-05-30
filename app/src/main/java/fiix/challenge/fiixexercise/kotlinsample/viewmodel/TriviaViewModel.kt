@@ -84,14 +84,6 @@ class TriviaViewModel(
         }
     }
 
-    /*fun getTrivia(id: Int) {
-        viewModelScope.launch {
-            withContext(Dispatchers.IO){
-                _trivia.postValue(repository.getTrivia(id))
-            }
-        }
-    }*/
-
     fun resetTrivia(){
         viewModelScope.launch {
             withContext(Dispatchers.IO){
