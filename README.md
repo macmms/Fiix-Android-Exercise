@@ -4,7 +4,7 @@ Welcome to the Fiix Android exercise, This repo contains all the required inform
 any sample data. 
 The project is defaulted to Kotlin and you can find all corresponding
 files within the `kotlinsample` package. If you are more comfortable with Java you can find all
-the files under the `javasample` package.
+the files under the `javasample` package. However, we would like the code you write to be in Kotlin.
 
 The aim of this exercise is for you to show us how you would best implement a solution. 
 
