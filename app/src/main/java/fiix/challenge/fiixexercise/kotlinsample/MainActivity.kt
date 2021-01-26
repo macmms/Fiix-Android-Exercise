@@ -1,8 +1,7 @@
 package fiix.challenge.fiixexercise.kotlinsample
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import fiix.challenge.fiixexercise.R
 import fiix.challenge.fiixexercise.dp.DataProcessor
 
