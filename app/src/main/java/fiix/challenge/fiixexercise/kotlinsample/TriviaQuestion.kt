@@ -1,3 +1,5 @@
 package fiix.challenge.fiixexercise.kotlinsample
 
-data class TriviaQuestion(val question: String, var answer: String? = null)
+import java.io.Serializable
+
+data class TriviaQuestion(var question: String, var answer: String? = null, var isVisible: Boolean = false) : Serializable

@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">FiixExercise</string>
+    <string name="see_answer">See answer</string>
+    <string name="this_is_text_containing_answer">Click "SEE ANSWER" for answer.</string>
+    <string name="question">Question:</string>
+    <string name="text_for_the_question">This is text for the question</string>
+    <string name="answer">Answer:</string>
+    <string name="text_for_answer">This is text for answer</string>
+    <string name="save_button">SAVE</string>
+    <string name="TRIVIA_BUNDLE_KEY">trivia_bundle_key</string>
+    <string name="POSITION_BUNDLE_KEY">position_bundle_key</string>
 </resources>
