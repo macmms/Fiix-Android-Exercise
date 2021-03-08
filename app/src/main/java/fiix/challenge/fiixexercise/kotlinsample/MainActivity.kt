@@ -1,10 +1,10 @@
 package fiix.challenge.fiixexercise.kotlinsample
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codingwithmitch.kotlinrecyclerviewexample.QuestionRecyclerAdapter
 import com.codingwithmitch.kotlinrecyclerviewexample.TopSpacingItemDecoration
 import fiix.challenge.fiixexercise.R
 import fiix.challenge.fiixexercise.dp.DataProcessor
@@ -18,16 +18,26 @@ class MainActivity : AppCompatActivity(), QuestionRecyclerAdapter.OnItemClickLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val answers = dp.getAnswers()
         initRecyclerView()
-        addDataSet()
+
     }
 
     private fun addDataSet() {
-        data = MockRepo.triviaQuestions
-        val dbHelper: QuestionDbHelper? = QuestionDbHelper.getInstance(this)
+        val dbHelper: QuestionDbHelper? = QuestionDbHelper(this)
+        if (dbHelper?.allQuestion != null && dbHelper?.allQuestion.size != 0) {
+            questionAdapter.submitList(dbHelper.allQuestion, this)
+        } else {
+            data = MockRepo.triviaQuestions
+            for (question in data) {
+                dbHelper?.insertQuestion(question)
+            }
+            questionAdapter.submitList(data, this)
+        }
+    }
 
-        questionAdapter.submitList(data, this)
+    override fun onResume() {
+        super.onResume()
+        addDataSet()
     }
 
     private fun initRecyclerView() {
@@ -44,14 +54,17 @@ class MainActivity : AppCompatActivity(), QuestionRecyclerAdapter.OnItemClickLis
         val intent = Intent(this@MainActivity, QuestionDetailsActivity::class.java)
         intent.putExtra(EXTRA_QUESTION, item)
         startActivity(intent)
-
     }
 
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onAnswerButtonClick(question: TriviaQuestion?) {
         question?.isShowing = true
-        data.find { it.id == question?.id }?.isShowing = true
-        questionAdapter.submitList(data, this)
+        val dbHelper: QuestionDbHelper? = QuestionDbHelper(this)
+        dbHelper?.update(question!!)
+        var data1: ArrayList<TriviaQuestion> = dbHelper?.allQuestion!!
+        data1?.find { it.id == question?.id }?.isShowing = true
+        questionAdapter.submitList(data1, this)
         questionAdapter.notifyDataSetChanged()
     }
 

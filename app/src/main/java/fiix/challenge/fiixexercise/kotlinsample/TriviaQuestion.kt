@@ -3,7 +3,7 @@ package fiix.challenge.fiixexercise.kotlinsample
 import android.os.Parcel
 import android.os.Parcelable
 
-data class TriviaQuestion(var question: String? = null, var answer: String? = null, var isShowing:Boolean, var id:Int): Parcelable {
+data class TriviaQuestion(var question: String? = null, var answer: String? = null, var isShowing: Boolean, var id: Int) : Parcelable {
     constructor(parcel: Parcel) : this(
             parcel.readString(),
             parcel.readString(),

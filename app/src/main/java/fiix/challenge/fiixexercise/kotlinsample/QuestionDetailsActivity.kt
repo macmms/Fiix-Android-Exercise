@@ -1,6 +1,5 @@
 package fiix.challenge.fiixexercise.kotlinsample
-
-
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import fiix.challenge.fiixexercise.R
@@ -21,7 +20,16 @@ class QuestionDetailsActivity : AppCompatActivity() {
             edit_Text_view_answer.setText(question?.answer)
         }
         button_save.setOnClickListener {
-            finish()
+            val dbHelper: QuestionDbHelper? = QuestionDbHelper(this)
+            edit_Text_view_question.text.toString()
+            question?.question = edit_Text_view_question.text.toString()
+            question?.answer = edit_Text_view_answer.text.toString()
+            question?.isShowing = false
+            dbHelper?.update(question!!)
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+            this.finish()
         }
     }
 
