@@ -1,7 +1,7 @@
 ## Fiix Android Exercise
 
 Welcome to the Fiix Android exercise, This repo contains all the required information for the base project setup along with
-any sample data. 
+any sample data. You can fork the repository so you can make your changes and easily make your pull request later.
 The project is defaulted to Kotlin and you can find all corresponding
 files within the `kotlinsample` package. If you are more comfortable with Java you can find all
 the files under the `javasample` package. However, we would like the code you write to be in Kotlin.
@@ -22,4 +22,10 @@ the question, the answer and a save button. Both the question and answer can be 
 - A class called DataProcessor is how you will access the answers. 
 - You are free to modify any part of the code except for code that is marked with a comment that says `//DO NOT MODIFY`
 
-When you are done please create a pull request. 
+### Submitting the Solution
+
+When you are done please create a pull request from your forked repository. Here is a link that describes that process if you have not done so before:
+https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork
+
+General GitHub pull request link:
+https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request
