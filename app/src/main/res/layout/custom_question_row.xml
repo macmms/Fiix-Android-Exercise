@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/tv_questions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:padding="@dimen/dp_ten"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textSize="@dimen/sp_eighteen"
+        android:text="@string/txt_how_many_books_are_in_the_chronicles_of_narnia_series"/>
+
+    <TextView
+        android:id="@+id/tv_ans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_questions"
+        android:visibility="gone"
+        android:padding="@dimen/dp_five"
+        android:layout_marginTop="@dimen/dp_ten"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="@string/txt_answer"/>
+
+    <Button
+        android:id="@+id/btn_answers"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_questions"
+        android:text="@string/txt_answer"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

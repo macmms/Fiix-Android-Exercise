@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import fiix.challenge.fiixexercise.dp.DataSource;
+import fiix.challenge.fiixexercise.model.TriviaQuestion;
 
 public class LocalDataSource implements DataSource {
     @NotNull
@@ -25,5 +26,11 @@ public class LocalDataSource implements DataSource {
                 "10",
                 "Crete"
         );
+    }
+
+    @NotNull
+    @Override
+    public List<TriviaQuestion> getQuestion() {
+        return null;
     }
 }

@@ -1,4 +1,6 @@
-package fiix.challenge.fiixexercise.kotlinsample
+package fiix.challenge.fiixexercise.repositories
+
+import fiix.challenge.fiixexercise.model.TriviaQuestion
 
 class MockRepo {
 
