@@ -5,7 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.List;
 
-import fiix.challenge.fiixexercise.dp.DataSource;
+import fiix.challenge.fiixexercise.kotlinsample.buisness.domain.TriviaQuestion;
+import fiix.challenge.fiixexercise.kotlinsample.framework.datasource.cache.abstraction.DataSource;
 
 public class LocalDataSource implements DataSource {
     @NotNull
@@ -26,4 +27,11 @@ public class LocalDataSource implements DataSource {
                 "Crete"
         );
     }
+
+    @NotNull
+    @Override
+    public List<TriviaQuestion> getQuestion() {
+        return null;
+    }
+
 }
