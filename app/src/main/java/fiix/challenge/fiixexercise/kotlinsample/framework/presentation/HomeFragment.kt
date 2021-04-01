@@ -16,9 +16,6 @@ import fiix.challenge.fiixexercise.databinding.FragmentHomeBinding
 import fiix.challenge.fiixexercise.kotlinsample.buisness.domain.TriviaQuestion
 import fiix.challenge.fiixexercise.kotlinsample.framework.presentation.viewmodule.HomeViewModel
 import fiix.challenge.fiixexercise.kotlinsample.utils.ItemClickEventHandler
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment
@@ -48,12 +45,7 @@ class HomeFragment
 
     private fun subscribeObservers() {
         mTriviaQuestionList = ArrayList()
-
-        CoroutineScope(Dispatchers.IO).launch{
-            launch {
-                mHomeViewModel.bindQuestionAndAnswer()
-            }
-        }
+        mHomeViewModel.launchDataLoad()
 
         mHomeViewModel.triviaQuestionList.observe(viewLifecycleOwner, Observer {
             mTriviaQuestionList = it
@@ -61,8 +53,6 @@ class HomeFragment
             mBinding.progressbar.visibility = View.GONE
             mBinding.recyclerView.visibility = View.VISIBLE
         })
-
-
     }
 
     override fun itemClick(position: Int) {

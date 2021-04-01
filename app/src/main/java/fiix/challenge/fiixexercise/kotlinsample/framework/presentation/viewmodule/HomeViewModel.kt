@@ -3,9 +3,13 @@ package fiix.challenge.fiixexercise.kotlinsample.framework.presentation.viewmodu
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import fiix.challenge.fiixexercise.dp.DataProcessor
 import fiix.challenge.fiixexercise.kotlinsample.buisness.domain.TriviaQuestion
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,16 +19,24 @@ class HomeViewModel @Inject constructor(private val dataProcessor: DataProcessor
     var triviaQuestionList: LiveData<List<TriviaQuestion>> = _triviaQuestionList
     private var mQuestionAnswerList: List<TriviaQuestion> = ArrayList(0)
 
-    fun bindQuestionAndAnswer(){
-            if (mQuestionAnswerList.isNullOrEmpty()){
-                val questionList = dataProcessor.getQuestion()
-                val answerList =   dataProcessor.getAnswers()
-                mQuestionAnswerList = questionList
-                for (item in mQuestionAnswerList.indices){
-                    mQuestionAnswerList[item].answer = answerList[item]
-                }
-            }
-            _triviaQuestionList.postValue(mQuestionAnswerList)
+    suspend fun bindQuestionAndAnswer() = withContext(context = Dispatchers.IO) {
+        if (mQuestionAnswerList.isNullOrEmpty()){
+                    val questionList = dataProcessor.getQuestion()
+                    val answerList =   dataProcessor.getAnswers()
+                    mQuestionAnswerList = questionList
+                    for (item in mQuestionAnswerList.indices){
+                        mQuestionAnswerList[item].answer = answerList[item]
+                    }
+        }
+        withContext(Dispatchers.Main){
+            _triviaQuestionList.value = mQuestionAnswerList
+        }
+    }
+
+    fun launchDataLoad() {
+        viewModelScope.launch {
+            bindQuestionAndAnswer()
+        }
     }
 
     private var _position = MutableLiveData<Int>()
