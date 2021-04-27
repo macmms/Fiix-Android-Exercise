@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">FiixExercise</string>
+    <string name="question_title_text">Question #%s:</string>
+    <string name="question_title2_text">Question:</string>
+    <string name="question_hint_text">Enter question</string>
+    <string name="answer_title_text">Answer:</string>
+    <string name="answer_hint_text">Enter answer</string>
+    <string name="answer_button_text">ANSWER</string>
+    <string name="save_button_text">Save</string>
+    <string name="update_q_and_a_successful_title_text">Successful</string>
+    <string name="update_q_and_a_successful_message_text">Update question and answer successfully</string>
+    <string name="update_q_and_a_fail_title_text">Warning</string>
+    <string name="update_q_and_a_fail_message_text">Nothing got updated</string>
+    <string name="dialog_ok_button_text">OK</string>
+    <string name="demo_question_text">Green Eggs and Ham is a book by which author?</string>
+    <string name="demo_answer_text">Dr. Seuss</string>
 </resources>
