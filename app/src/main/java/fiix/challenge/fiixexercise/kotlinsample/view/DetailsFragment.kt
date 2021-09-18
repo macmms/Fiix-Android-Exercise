@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import fiix.challenge.fiixexercise.databinding.FragmentDetailsBinding
+import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestionUiModel
 import fiix.challenge.fiixexercise.kotlinsample.viewmodel.SharedViewModel
 
 /**
@@ -28,7 +29,20 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding?.triviaQuestion = viewModel.questionDetailBeingEdited
+        binding?.apply {
+            triviaQuestion = viewModel.questionDetailBeingEdited
+            saveButton.setOnClickListener {
+                viewModel.run {
+                    questionDetailBeingEdited = null
+                    updatedTrivia = TriviaQuestionUiModel(
+                        questionEditText.text.toString(),
+                        answerEditText.text.toString(),
+                        triviaQuestion?.position ?: -1
+                    )
+                    activity?.onBackPressed()
+                }
+            }
+        }
     }
 
     override fun onDestroyView() {

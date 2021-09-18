@@ -17,6 +17,17 @@ class SharedViewModel : ViewModel() {
     private val questions = repo.questions
     var questionDetailBeingEdited: TriviaQuestionUiModel? = null
     var answersFetched = false
+    var updatedTrivia: TriviaQuestionUiModel? = null
+        set(value) {
+            field = value
+            val existingTriviaQuestions = _mainFragmentUiModel.value?.triviaQuestions
+            if (value != null) {
+                val updatedList = existingTriviaQuestions?.toMutableList()?.apply {
+                    set(value.position, value)
+                }
+                _mainFragmentUiModel.postValue(MainFragmentUiModel(updatedList?.toList() ?: listOf()))
+            }
+        }
 
     init {
         // Post the questions without answers first
