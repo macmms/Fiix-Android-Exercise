@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FiixExercise</string>
     <string name="answer">Answer</string>
+    <string name="save">Save</string>
 </resources>

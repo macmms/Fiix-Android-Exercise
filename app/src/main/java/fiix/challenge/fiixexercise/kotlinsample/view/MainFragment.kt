@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import fiix.challenge.fiixexercise.databinding.FragmentMainBinding
 import fiix.challenge.fiixexercise.kotlinsample.viewmodel.SharedViewModel
 
@@ -17,7 +17,7 @@ import fiix.challenge.fiixexercise.kotlinsample.viewmodel.SharedViewModel
 class MainFragment : Fragment() {
 
     private var binding: FragmentMainBinding? = null
-    private val viewModel: SharedViewModel by viewModels()
+    private val viewModel: SharedViewModel by activityViewModels()
     private val adapter = TriviaQuestionsAdapter()
 
     override fun onCreateView(
