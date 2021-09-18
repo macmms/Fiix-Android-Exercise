@@ -2,10 +2,11 @@ package fiix.challenge.fiixexercise.kotlinsample.repository
 
 import fiix.challenge.fiixexercise.dp.DataProcessor
 import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestion
+import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestionUiModel
 
 class MockRepo {
     private val dp = DataProcessor(LocalDataSource())
-    val questions = arrayListOf(
+    private val questionsWithoutAnswers: List<TriviaQuestion> = arrayListOf(
         TriviaQuestion("How many books are in the Chronicles of Narnia series?"),
         TriviaQuestion("Green Eggs and Ham is a book by which author?"),
         TriviaQuestion("What is the title of the first Sherlock Holmes book by Arthur Conan Doyle?"),
@@ -20,5 +21,22 @@ class MockRepo {
         TriviaQuestion("Talos, the mythical giant bronze man, was the protector of which island?")
     )
 
-    suspend fun getAnswers(): List<String> = dp.getAnswers()
+    val questions: List<TriviaQuestionUiModel> = questionsWithoutAnswers.map {
+        /*
+        The repository is responsible for transforming the network model to Ui models.
+        In this case, this is just a dummy implementation
+        */
+        TriviaQuestionUiModel(it.question, it.answer)
+    }
+
+    suspend fun getQuestionsWithAnswers(): List<TriviaQuestionUiModel> {
+        val answers = dp.getAnswers()
+        return questionsWithoutAnswers.mapIndexed { index, triviaQuestion ->
+            /*
+            The repository is responsible for transforming the network model to Ui models.
+            In this case, this is just a dummy implementation
+            */
+            TriviaQuestionUiModel(triviaQuestion.question, answers[index])
+        }
+    }
 }

@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="question"
-            type="String" />
+            name="triviaQuestion"
+            type="fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestionUiModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +18,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/default_margin"
-            android:text="@{question}"
+            android:text="@{triviaQuestion.description}"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/show_answer"
