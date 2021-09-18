@@ -47,18 +47,26 @@ class SharedViewModel @Inject constructor(private val repo: MockRepo) : ViewMode
         }
 
     init {
+        // Check if answers are available by looking at the first value
+        val answersAvailable: Boolean = questions.first().answer != null
+
         // Post the questions without answers first
         _mainFragmentUiModel.postValue(
-            MainFragmentUiModel(questions, "Answers are being fetched in the background")
+            MainFragmentUiModel(questions, if (answersAvailable) null else "Answers are being fetched in the background")
         )
 
-        viewModelScope.launch {
-            // Get the questions with answers asynchronously from the repo
-            val questionsWithAnswers = repo.getQuestionsWithAnswers()
-            // Post the questions with answers again when answers are available, with a toast message
-            _mainFragmentUiModel.postValue(
-                MainFragmentUiModel(questionsWithAnswers, if (!answersFetched) "Answers are now available" else null)
-            )
+        if (!answersAvailable) {
+            viewModelScope.launch {
+                // Get the questions with answers asynchronously from the repo
+                val questionsWithAnswers = repo.getQuestionsWithAnswers()
+                // Post the questions with answers again when answers are available, with a toast message
+                _mainFragmentUiModel.postValue(
+                    MainFragmentUiModel(
+                        questionsWithAnswers,
+                        if (!answersFetched) "Answers are now available" else null
+                    )
+                )
+            }
         }
         answersFetched = true
     }
