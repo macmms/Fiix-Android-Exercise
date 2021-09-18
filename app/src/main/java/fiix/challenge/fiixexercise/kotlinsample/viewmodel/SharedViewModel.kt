@@ -16,6 +16,7 @@ class SharedViewModel : ViewModel() {
     private val _mainFragmentUiModel = MutableLiveData<MainFragmentUiModel>()
     private val questions = repo.questions
     var questionDetailBeingEdited: TriviaQuestionUiModel? = null
+    var answersFetched = false
 
     init {
         // Post the questions without answers first
@@ -28,8 +29,9 @@ class SharedViewModel : ViewModel() {
             val questionsWithAnswers = repo.getQuestionsWithAnswers()
             // Post the questions with answers again when answers are available, with a toast message
             _mainFragmentUiModel.postValue(
-                MainFragmentUiModel(questionsWithAnswers, "Answers are now available")
+                MainFragmentUiModel(questionsWithAnswers, if (!answersFetched) "Answers are now available" else null)
             )
         }
+        answersFetched = true
     }
 }
