@@ -10,12 +10,16 @@ import fiix.challenge.fiixexercise.databinding.QuestionRowItemBinding
 import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestionUiModel
 import fiix.challenge.fiixexercise.kotlinsample.viewmodel.SharedViewModel
 
+/*
+   Adapter for the trivia list recycler view
+ */
 class TriviaQuestionsAdapter : RecyclerView.Adapter<TriviaQuestionsAdapter.TriviaDescViewHolder>() {
 
     var triviaQuestionsList: List<TriviaQuestionUiModel> = listOf()
     var viewModel: SharedViewModel? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TriviaDescViewHolder {
+        // Inflate layout through view binding
         val binding = QuestionRowItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return TriviaDescViewHolder(binding, viewModel)
     }
@@ -30,19 +34,22 @@ class TriviaQuestionsAdapter : RecyclerView.Adapter<TriviaQuestionsAdapter.Trivi
     ) : RecyclerView.ViewHolder(binding.root) {
         fun bindQuestion(question: TriviaQuestionUiModel) {
             binding.apply {
+                // Set data in layout
                 triviaQuestion = question
                 answerButton.setOnClickListener { button ->
+                    // Reveal the answer if it is available, else ask the user to wait
                     question.answer?.let {
                         button.visibility = View.INVISIBLE
                         answerTextView.visibility = View.VISIBLE
                     } ?: Toast.makeText(button.context, "Please wait till the answer is available", Toast.LENGTH_SHORT).show()
                 }
                 root.setOnClickListener { root ->
+                    // Navigate to trivia detail screen if the answer is available, else ask the user to wait
                     question.answer?.let {
                         viewModel?.questionDetailBeingEdited = question
                         val action = MainFragmentDirections.actionMainFragmentToDetailsFragment()
                         root.findNavController().navigate(action)
-                    } ?: Toast.makeText(root.context, "Please see the answer before editing", Toast.LENGTH_SHORT).show()
+                    } ?: Toast.makeText(root.context, "Please wait till the answer is available", Toast.LENGTH_SHORT).show()
                 }
             }
         }

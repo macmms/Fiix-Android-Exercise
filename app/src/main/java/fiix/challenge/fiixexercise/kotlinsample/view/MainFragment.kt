@@ -36,11 +36,11 @@ class MainFragment : Fragment() {
 
         // Observe the list of questions and update the recycler view adapter whenever we get a new list
         viewModel.mainFragmentUiModel.observe(viewLifecycleOwner) { uiModel ->
-            Log.i("MainFragment", "List received")
             adapter.run {
                 triviaQuestionsList = uiModel.triviaQuestions
                 notifyDataSetChanged()
             }
+            // Show a toast if applicable
             uiModel.toastMessage?.let {
                 Toast.makeText(context, it, Toast.LENGTH_LONG).show()
             }

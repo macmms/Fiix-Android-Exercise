@@ -24,11 +24,13 @@ class MainActivity : AppCompatActivity() {
         setUpActionBar()
     }
 
+    // Handles back navigation in the detail fragment
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration)
                 || super.onSupportNavigateUp()
     }
 
+    // Set up action bar
     private fun setUpActionBar() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         navController = navHostFragment.navController

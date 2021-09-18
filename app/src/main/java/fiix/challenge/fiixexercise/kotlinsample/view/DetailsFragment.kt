@@ -30,10 +30,12 @@ class DetailsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding?.apply {
+            // Set data in layout
             triviaQuestion = viewModel.questionDetailBeingEdited
             saveButton.setOnClickListener {
                 viewModel.run {
                     questionDetailBeingEdited = null
+                    // Set the updatedTrivia field in view model, which then updates the list and emits live data
                     updatedTrivia = TriviaQuestionUiModel(
                         questionEditText.text.toString(),
                         answerEditText.text.toString(),
@@ -47,6 +49,7 @@ class DetailsFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // Assign binding back to null avoid memory leak
         binding = null
     }
 
