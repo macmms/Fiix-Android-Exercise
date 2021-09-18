@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import fiix.challenge.fiixexercise.databinding.FragmentDetailsBinding
+import fiix.challenge.fiixexercise.kotlinsample.viewmodel.SharedViewModel
 
 /**
  * A simple [Fragment] subclass that displays details of a question
@@ -13,6 +15,7 @@ import fiix.challenge.fiixexercise.databinding.FragmentDetailsBinding
 class DetailsFragment : Fragment() {
 
     private var binding: FragmentDetailsBinding? = null
+    private val viewModel: SharedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
