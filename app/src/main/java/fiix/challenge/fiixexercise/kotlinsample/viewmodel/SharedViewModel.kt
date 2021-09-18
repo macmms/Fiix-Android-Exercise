@@ -4,26 +4,30 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestionUiModel
+import fiix.challenge.fiixexercise.kotlinsample.model.MainFragmentUiModel
 import fiix.challenge.fiixexercise.kotlinsample.repository.MockRepo
 import kotlinx.coroutines.launch
 
 class SharedViewModel : ViewModel() {
     private val repo = MockRepo()
-    val triviaQuestions: LiveData<List<TriviaQuestionUiModel>>
-        get() = _triviaQuestions
-    private val _triviaQuestions = MutableLiveData<List<TriviaQuestionUiModel>>()
+    val mainFragmentUiModel: LiveData<MainFragmentUiModel>
+        get() = _mainFragmentUiModel
+    private val _mainFragmentUiModel = MutableLiveData<MainFragmentUiModel>()
     private val questions = repo.questions
 
     init {
         // Post the questions without answers first
-        _triviaQuestions.postValue(questions)
+        _mainFragmentUiModel.postValue(
+            MainFragmentUiModel(questions, "Answers are being fetched in the background")
+        )
 
         viewModelScope.launch {
             // Get the questions with answers asynchronously from the repo
             val questionsWithAnswers = repo.getQuestionsWithAnswers()
-            // Post the questions with answers again when answers are available
-            _triviaQuestions.postValue(questionsWithAnswers)
+            // Post the questions with answers again when answers are available, with a toast message
+            _mainFragmentUiModel.postValue(
+                MainFragmentUiModel(questionsWithAnswers, "Answers are now available")
+            )
         }
     }
 }
