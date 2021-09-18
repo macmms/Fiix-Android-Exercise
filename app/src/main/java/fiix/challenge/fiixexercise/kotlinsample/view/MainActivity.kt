@@ -10,6 +10,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Inflate layout through view binding available as a part of data binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }

@@ -10,12 +10,8 @@ class DataProcessor(private val source: DataSource) {
     //DO NOT MODIFY
     val delayModifier = Random.nextLong(2, 30)
 
-
-    fun getAnswers(): List<String> {
-        return runBlocking {
-            processDataAsync().await()
-        }
-    }
+    // Get answers without blocking the main thread, as it could take anywhere between 2 to 30 seconds
+    suspend fun getAnswers(): List<String> = processDataAsync().await()
 
     //DO NOT MODIFY THIS FUNCTION
     private suspend fun processDataAsync()= scope.async {

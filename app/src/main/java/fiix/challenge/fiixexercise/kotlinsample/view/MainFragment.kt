@@ -11,33 +11,40 @@ import fiix.challenge.fiixexercise.databinding.FragmentMainBinding
 import fiix.challenge.fiixexercise.kotlinsample.viewmodel.SharedViewModel
 
 /**
- * A simple [Fragment] subclass that displays details of a question
+ * A simple [Fragment] subclass that displays a list of questions
  */
 class MainFragment : Fragment() {
 
     private var binding: FragmentMainBinding? = null
     private val viewModel: SharedViewModel by viewModels()
+    private val adapter = TriviaQuestionsAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+        // Use view binding to inflate layout
         binding = FragmentMainBinding.inflate(inflater, container, false)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding?.questionsListRecyclerView?.adapter = adapter
+
+        // Observe the list of questions and update the recycler view adapter whenever we get a new list
         viewModel.triviaQuestions.observe(viewLifecycleOwner) {
             Log.i("MainFragment", "List received $it")
-            val adapter = TriviaQuestionsAdapter(it)
-            binding?.questionsListRecyclerView?.adapter = adapter
+            adapter.run {
+                triviaQuestionsList = it
+                notifyDataSetChanged()
+            }
         }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
+        // Assign the binding back to null on destroy view to prevent memory leaks
         binding = null
     }
 

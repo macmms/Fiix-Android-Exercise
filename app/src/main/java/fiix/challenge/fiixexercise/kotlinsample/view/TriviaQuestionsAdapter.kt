@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import fiix.challenge.fiixexercise.databinding.QuestionRowItemBinding
 import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestion
 
-class TriviaQuestionsAdapter(private val triviaQuestionsList: List<TriviaQuestion>) : RecyclerView.Adapter<TriviaQuestionsAdapter.TriviaDescViewHolder>() {
+class TriviaQuestionsAdapter : RecyclerView.Adapter<TriviaQuestionsAdapter.TriviaDescViewHolder>() {
+
+    var triviaQuestionsList: List<TriviaQuestion> = listOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TriviaDescViewHolder {
         val binding = QuestionRowItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
