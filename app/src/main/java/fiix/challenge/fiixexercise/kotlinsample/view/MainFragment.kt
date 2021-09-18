@@ -5,23 +5,27 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import fiix.challenge.fiixexercise.R
+import fiix.challenge.fiixexercise.databinding.FragmentMainBinding
 
 /**
  * A simple [Fragment] subclass that displays details of a question
  */
 class MainFragment : Fragment() {
 
+    private var binding: FragmentMainBinding? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false)
+        binding = FragmentMainBinding.inflate(inflater, container, false)
+        return binding?.root
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() = MainFragment()
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
+
 }
