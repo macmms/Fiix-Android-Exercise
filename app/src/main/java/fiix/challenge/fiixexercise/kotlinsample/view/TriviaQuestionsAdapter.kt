@@ -6,14 +6,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import dagger.hilt.android.scopes.FragmentScoped
 import fiix.challenge.fiixexercise.databinding.QuestionRowItemBinding
 import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestionUiModel
 import fiix.challenge.fiixexercise.kotlinsample.viewmodel.SharedViewModel
+import javax.inject.Inject
 
 /*
    Adapter for the trivia list recycler view
  */
-class TriviaQuestionsAdapter : RecyclerView.Adapter<TriviaQuestionsAdapter.TriviaDescViewHolder>() {
+@FragmentScoped
+class TriviaQuestionsAdapter @Inject constructor() : RecyclerView.Adapter<TriviaQuestionsAdapter.TriviaDescViewHolder>() {
 
     var triviaQuestionsList: List<TriviaQuestionUiModel> = listOf()
     var viewModel: SharedViewModel? = null

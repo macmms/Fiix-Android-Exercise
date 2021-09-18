@@ -21,7 +21,7 @@ class MainFragment : Fragment() {
 
     private var binding: FragmentMainBinding? = null
     private val viewModel: SharedViewModel by activityViewModels()
-    private val adapter = TriviaQuestionsAdapter()
+    @Inject lateinit var adapter: TriviaQuestionsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
