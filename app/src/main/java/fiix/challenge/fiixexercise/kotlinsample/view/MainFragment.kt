@@ -31,6 +31,8 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.triviaQuestions.observe(viewLifecycleOwner) {
             Log.i("MainFragment", "List received $it")
+            val adapter = TriviaQuestionsAdapter(it)
+            binding?.questionsListRecyclerView?.adapter = adapter
         }
     }
 
