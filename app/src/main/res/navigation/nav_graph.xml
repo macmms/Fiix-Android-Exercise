@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="fiix.challenge.fiixexercise.kotlinsample.view.MainFragment"
-        android:label="MainFragment"
+        android:label="Trivia"
         tools:layout="@layout/fragment_main">
         <action
             android:id="@+id/action_mainFragment_to_detailsFragment"
@@ -18,6 +18,6 @@
     <fragment
         android:id="@+id/detailsFragment"
         android:name="fiix.challenge.fiixexercise.kotlinsample.view.DetailsFragment"
-        android:label="DetailsFragment"
+        android:label="Trivia Details"
         tools:layout="@layout/fragment_details" />
 </navigation>
