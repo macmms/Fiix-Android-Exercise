@@ -36,7 +36,7 @@ class MockRepo {
             The repository is responsible for transforming the network model to Ui models.
             In this case, this is just a dummy implementation
             */
-            TriviaQuestionUiModel(triviaQuestion.question, answers[index])
+            TriviaQuestionUiModel(triviaQuestion.question, answers[index], index)
         }
     }
 }

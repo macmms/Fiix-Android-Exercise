@@ -12,5 +12,5 @@ package fiix.challenge.fiixexercise.kotlinsample.model
 data class TriviaQuestionUiModel(
     val question: String,
     var answer: String? = null,
-    var description: String? = question
+    var position: Int = -1
 )

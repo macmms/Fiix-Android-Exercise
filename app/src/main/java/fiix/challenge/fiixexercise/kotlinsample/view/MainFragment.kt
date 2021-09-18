@@ -31,6 +31,7 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adapter.viewModel = viewModel
         binding?.questionsListRecyclerView?.adapter = adapter
 
         // Observe the list of questions and update the recycler view adapter whenever we get a new list

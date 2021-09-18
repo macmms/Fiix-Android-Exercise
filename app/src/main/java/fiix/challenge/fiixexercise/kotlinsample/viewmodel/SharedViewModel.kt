@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import fiix.challenge.fiixexercise.kotlinsample.model.MainFragmentUiModel
+import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestionUiModel
 import fiix.challenge.fiixexercise.kotlinsample.repository.MockRepo
 import kotlinx.coroutines.launch
 
@@ -14,6 +15,7 @@ class SharedViewModel : ViewModel() {
         get() = _mainFragmentUiModel
     private val _mainFragmentUiModel = MutableLiveData<MainFragmentUiModel>()
     private val questions = repo.questions
+    var questionDetailBeingEdited: TriviaQuestionUiModel? = null
 
     init {
         // Post the questions without answers first
