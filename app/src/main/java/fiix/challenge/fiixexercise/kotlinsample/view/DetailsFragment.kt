@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import dagger.hilt.android.AndroidEntryPoint
 import fiix.challenge.fiixexercise.databinding.FragmentDetailsBinding
 import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestionUiModel
 import fiix.challenge.fiixexercise.kotlinsample.viewmodel.SharedViewModel
@@ -13,6 +14,7 @@ import fiix.challenge.fiixexercise.kotlinsample.viewmodel.SharedViewModel
 /**
  * A simple [Fragment] subclass that displays details of a question
  */
+@AndroidEntryPoint
 class DetailsFragment : Fragment() {
 
     private var binding: FragmentDetailsBinding? = null

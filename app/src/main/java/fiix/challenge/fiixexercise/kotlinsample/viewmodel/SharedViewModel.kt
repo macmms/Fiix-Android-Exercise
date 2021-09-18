@@ -4,13 +4,15 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import fiix.challenge.fiixexercise.kotlinsample.model.MainFragmentUiModel
 import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestionUiModel
 import fiix.challenge.fiixexercise.kotlinsample.repository.MockRepo
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class SharedViewModel : ViewModel() {
-    private val repo = MockRepo()
+@HiltViewModel
+class SharedViewModel @Inject constructor(private val repo: MockRepo) : ViewModel() {
     val mainFragmentUiModel: LiveData<MainFragmentUiModel>
         get() = _mainFragmentUiModel
     private val _mainFragmentUiModel = MutableLiveData<MainFragmentUiModel>()

@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import dagger.hilt.android.AndroidEntryPoint
 import fiix.challenge.fiixexercise.databinding.FragmentMainBinding
 import fiix.challenge.fiixexercise.kotlinsample.viewmodel.SharedViewModel
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass that displays a list of questions
  */
+@AndroidEntryPoint
 class MainFragment : Fragment() {
 
     private var binding: FragmentMainBinding? = null
