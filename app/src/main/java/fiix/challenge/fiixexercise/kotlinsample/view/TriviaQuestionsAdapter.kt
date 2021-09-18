@@ -1,7 +1,9 @@
 package fiix.challenge.fiixexercise.kotlinsample.view
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import fiix.challenge.fiixexercise.databinding.QuestionRowItemBinding
 import fiix.challenge.fiixexercise.kotlinsample.model.TriviaQuestionUiModel
@@ -20,8 +22,16 @@ class TriviaQuestionsAdapter : RecyclerView.Adapter<TriviaQuestionsAdapter.Trivi
     override fun getItemCount(): Int = triviaQuestionsList.size
 
     class TriviaDescViewHolder(private val binding: QuestionRowItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bindQuestion(triviaQuestion: TriviaQuestionUiModel) {
-            binding.triviaQuestion = triviaQuestion
+        fun bindQuestion(question: TriviaQuestionUiModel) {
+            binding.apply {
+                triviaQuestion = question
+                answerButton.setOnClickListener { button ->
+                    question.answer?.let {
+                        button.visibility = View.INVISIBLE
+                        answerTextView.visibility = View.VISIBLE
+                    } ?: Toast.makeText(button.context, "Please wait till the answer is available", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 }
