@@ -11,7 +11,7 @@
         android:theme="@style/AppTheme">
         <!-- If using the Java package, change the value to .javasample.MainActivity2 -->
         <activity android:name=".kotlinsample.MainActivity"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
