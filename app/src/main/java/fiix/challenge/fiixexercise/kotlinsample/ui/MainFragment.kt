@@ -1,27 +1,17 @@
 package fiix.challenge.fiixexercise.kotlinsample.ui
 
-import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ProgressBar
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import fiix.challenge.fiixexercise.R
 import fiix.challenge.fiixexercise.databinding.MainFragmentBinding
-import fiix.challenge.fiixexercise.dp.DataProcessor
-import fiix.challenge.fiixexercise.kotlinsample.LocalDataSource
 import fiix.challenge.fiixexercise.kotlinsample.MainActivity
-import fiix.challenge.fiixexercise.kotlinsample.MockRepo
-import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestion
 import fiix.challenge.fiixexercise.kotlinsample.adapter.QuestionsAdapter
-import fiix.challenge.fiixexercise.kotlinsample.db.QuestionsDatabase
 import fiix.challenge.fiixexercise.kotlinsample.model.Resource
-import fiix.challenge.fiixexercise.kotlinsample.repository.QuestionsRepository
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainFragment : Fragment() {
 

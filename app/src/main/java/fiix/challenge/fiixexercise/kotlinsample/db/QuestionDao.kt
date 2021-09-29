@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import fiix.challenge.fiixexercise.kotlinsample.TriviaQuestion
-import fiix.challenge.fiixexercise.kotlinsample.model.Resource
 
 @Dao
 interface QuestionDao {
