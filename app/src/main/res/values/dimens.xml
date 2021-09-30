@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="extra_small_padding">2dp</dimen>
+    <dimen name="medium_padding">8dp</dimen>
+    <dimen name="large_padding">16dp</dimen>
+
+
+    <dimen name="progress_indicator_stroke_width">8dp</dimen>
+
+    <dimen name="trivia_answer_size">40dp</dimen>
+</resources>

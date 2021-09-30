@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">FiixExercise</string>
+<!--TODO: Verify with UX if this should be capitalized or not    -->
+    <string name="trivia_answer_button_text">ANSWER</string>
+
+
+    <string name="save">Save</string>
+    <string name="trivia_question_label">Question</string>
+    <string name="trivia_answer_label">Answer</string>
+    <string name="trivia_loading">Hang tight, we\'re getting your trivia ready :)</string>
+    <string name="trivia_detail_not_found">Trivia detail not found</string>
 </resources>
